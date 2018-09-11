@@ -1,5 +1,50 @@
 body {
-  margin: 0;
+  margin: 25px 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+
+.container{
+  margin-top: 25px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgb(50,50,50);
+  color: rgb(215,215,215);
+  padding: 50px;
+  border-radius: 25px;
+}
+
+.container h2{
+	margin: 0 0 24px 0;
+  padding: 0 0 12px 0;
+  border-bottom: 1px solid white;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+}
+.row + .row{
+  margin-top: 25px;
+}
+.row img{
+  flex: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: 2px solid black;
+  overflow: hidden;
+}
+.row .name{
+  
+  font-weight: 700;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(150,150,150,.5);
 }
