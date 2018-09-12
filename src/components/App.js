@@ -8,21 +8,25 @@ import SelectUser from './SelectUser.js'
 import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
-  componentDidMount(){
-    this.props.dispatch(handleInitialData())
-  }
-  render() {
-    return (
-    	<div>
-	    	<LoadingBar />
-    		{
-          this.props.loading === true
-    			? <div>No user</div>
-    			: <SelectUser />
-    		}
-    	</div>
-    )
-  }
+	componentDidMount(){
+		this.props.dispatch(handleInitialData())
+	}
+	render() {
+		let {loading} = this.props
+		return (
+			<div>
+				<LoadingBar />
+				{
+					loading === true
+					? <div className="system-message">Wait a moment</div>
+					: <div>
+							<SelectUser />
+							<Question />
+						</div>
+				}
+			</div>
+		)
+	}
 }
 function mapStateToProps({authedUser}){
 	return {

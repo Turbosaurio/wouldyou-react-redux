@@ -1,33 +1,43 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Button from './button'
 
 class Question extends Component{
 	state = {
 		current: 0,
 	}
-	nextQuestion(state){
+	nextQuestion(){
 		// todo next question
+		let c = this.state.current
+		c++
+		this.setState({current: c})
 	}
 	render(){
-		const {questions} = this.props
+		const {
+			authedUser,
+			users,
+			questions,
+		} = this.props
 		const questions_arr = Object.keys(questions)
-		const currentQuestion = questions_arr[this.state.current]
-		const {optionOne, optionTwo} = questions[currentQuestion]
-
+		const {optionOne, optionTwo} = questions[questions_arr[this.state.current]]
+		
+		
 		return(
-			<div>
-				<h2>Would you rather?</h2>
-				<form>
-					<input type="radio" name="one" value={optionOne.text}/> {optionOne.text}
-					<input type="radio" name="two" value={optionTwo.text}/> {optionTwo.text}
-				</form>
+			<div className="container">
+				<h2>{`What does rather?`}</h2>
+				<div className="wrap-row">
+					<Button action={this.nextQuestion} label={optionOne.text} />
+					<Button action={this.nextQuestion} label={optionTwo.text} />
+				</div>
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = ({questions}) =>{
+const mapStateToProps = ({authedUser, users, questions}) =>{
 	return {
+		authedUser,
+		users,
 		questions,
 	}
 }

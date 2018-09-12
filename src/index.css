@@ -1,19 +1,27 @@
 body {
-  margin: 25px 0;
+  margin: 50px 0;
   padding: 0;
   font-family: sans-serif;
 }
 
 
 .container{
-  margin-top: 25px;
+  position: relative;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  background-color: rgb(50,50,50);
-  color: rgb(215,215,215);
-  padding: 50px;
-  border-radius: 25px;
+  color: rgb(50,50,50);
+  padding: 25px 25px 50px;
+  border-top: 30px solid rgb(50,50,50);
+  border-left: 3px solid rgb(50,50,50);
+  border-right: 3px solid rgb(50,50,50);
+  border-bottom: 3px solid rgb(50,50,50);
+  border-radius: 0 0 25px 25px;
+  box-sizing: border-box;
+}
+
+.container + .container{
+  margin-top: 50px;
 }
 
 .container h2{
@@ -21,9 +29,46 @@ body {
   padding: 0 0 12px 0;
   border-bottom: 1px solid white;
   text-transform: uppercase;
-  color: white;
+  color: rgb(50,50,50);
   text-align: center;
+  font-size: 2rem;
+}
+
+.system-message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200,200,200, .5);
+  color: rgb(50,50,50);
+  font-weight: 700;
   font-size: 3rem;
+}
+button.row{
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid rgb(50,50,50);
+  padding: 10px;
+  min-width: 300px;
+  border-radius: 10px;
+}
+button.row:hover{
+  background-color: rgb(215,215,215);
+}
+
+.wrap-row{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;;
+}
+
+.wrap-row >*{
+  margin: 5px;
 }
 
 .row{
@@ -31,7 +76,7 @@ body {
   align-items: center;
 }
 .row + .row{
-  margin-top: 25px;
+  
 }
 .row img{
   flex: none;
@@ -43,8 +88,7 @@ body {
   overflow: hidden;
 }
 .row .name{
-  
+  flex: 1;
   font-weight: 700;
   font-size: 1rem;
-  border-bottom: 1px solid rgba(150,150,150,.5);
 }
