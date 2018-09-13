@@ -20,6 +20,21 @@ body {
   box-sizing: border-box;
 }
 
+button.logout-button{
+  position: absolute;
+  top: -28px;
+  right: 5px;
+  border: 1px solid transparent;
+  padding: 4px;
+  color: white;
+  background-color: transparent;
+  transition: .25s;
+}
+
+button.logout-button:hover{
+  border-color: white;
+}
+
 .container + .container{
   margin-top: 50px;
 }

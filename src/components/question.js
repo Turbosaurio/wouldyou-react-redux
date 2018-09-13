@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Button from './button'
+import LogoutButton from './logout-button'
 
 class Question extends Component{
 	state = {
@@ -18,17 +19,23 @@ class Question extends Component{
 			users,
 			questions,
 		} = this.props
-		const questions_arr = Object.keys(questions)
-		const {optionOne, optionTwo} = questions[questions_arr[this.state.current]]
-		
+
+		const userQuestions = users[authedUser].questions
 		
 		return(
 			<div className="container">
-				<h2>{`What does rather?`}</h2>
-				<div className="wrap-row">
-					<Button action={this.nextQuestion} label={optionOne.text} />
-					<Button action={this.nextQuestion} label={optionTwo.text} />
-				</div>
+				<h2>{`${this.state.current + 1}. What does ${users[authedUser].name} rather?`}</h2>
+					{
+						userQuestions.map((question) =>{
+							return(
+								<div className="wrap-row" key={question}>
+									<Button action={this.nextQuestion} label={questions[question].optionOne.text} />
+									<Button action={this.nextQuestion} label={questions[question].optionTwo.text} />
+								</div>
+							)
+						})
+					}
+					<LogoutButton />
 			</div>
 		)
 	}

@@ -12,7 +12,7 @@ class App extends Component {
 		this.props.dispatch(handleInitialData())
 	}
 	render() {
-		let {loading} = this.props
+		let {loading, authedUser} = this.props
 		return (
 			<div>
 				<LoadingBar />
@@ -20,8 +20,11 @@ class App extends Component {
 					loading === true
 					? <div className="system-message">Wait a moment</div>
 					: <div>
-							<SelectUser />
-							<Question />
+							{
+								authedUser !== 'none'
+									? <Question />
+									: <SelectUser />
+							}	
 						</div>
 				}
 			</div>
@@ -30,6 +33,7 @@ class App extends Component {
 }
 function mapStateToProps({authedUser}){
 	return {
+		authedUser,
 		loading: authedUser === null
 	}
 }
