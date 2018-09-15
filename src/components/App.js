@@ -1,33 +1,39 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-
-import {handleInitialData} from '../actions/shared'
-import Question from './question.js'
-import SelectUser from './SelectUser.js'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import LoadingBar from 'react-redux-loading'
+
+import {handleInitialData} from '../actions/shared'
+import SelectUser from './SelectUser'
+import Dashboard from './Dashboard'
+
+
 
 class App extends Component {
 	componentDidMount(){
 		this.props.dispatch(handleInitialData())
 	}
 	render() {
-		let {loading, authedUser} = this.props
+		const {loading, authedUser} = this.props
+		const pleaseWait = <div className="system-message">Wait a moment</div>
 		return (
-			<div>
-				<LoadingBar />
-				{
-					loading === true
-					? <div className="system-message">Wait a moment</div>
-					: <div>
-							{
-								authedUser !== 'none'
-									? <Question />
-									: <SelectUser />
-							}	
-						</div>
-				}
-			</div>
+			<Router>
+				<div>
+					<LoadingBar />
+					{
+						loading === true
+						? pleaseWait
+						: <div>
+								{
+									authedUser === 'none'
+										? <SelectUser />
+										: <Dashboard />
+								}	
+							</div>
+					}
+				</div>
+			</Router>
 		)
 	}
 }

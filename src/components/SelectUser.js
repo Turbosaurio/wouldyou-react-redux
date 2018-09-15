@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
 import ButtonWithImage from './button-w-image'
 
+import Container from './window-container'
+
 class SelectUser extends Component{
 
 	handleSetAuthedUser(id){
@@ -14,23 +16,25 @@ class SelectUser extends Component{
 		const {users} = this.props
 		const users_arr = Object.keys(users)
 		return(
-			<div className="container">
-				<h2>Select a user</h2>
-				<div className="wrap-row">
-				{
-					users_arr.map((user) =>{
-						const u = users[user]
-						return(
-							<ButtonWithImage
-								key={u.id}
-								action={()=> {this.handleSetAuthedUser(u.id)}}
-								imageUrl={u.avatarURL}
-								label={u.name}
-							/>
+			<div className="container main">
+				<div className="container-inner">
+					<h2 className="container-header">Select a user</h2>
+					<div className="wrap-row">
+					{
+						users_arr.map((user) =>{
+							const u = users[user]
+							return(
+								<ButtonWithImage
+									key={u.id}
+									action={()=> {this.handleSetAuthedUser(u.id)}}
+									imageUrl={u.avatarURL}
+									label={u.name}
+								/>
+							)
+						}
 						)
 					}
-					)
-				}
+					</div>
 				</div>
 			</div>
 		)
