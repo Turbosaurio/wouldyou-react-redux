@@ -21,9 +21,9 @@ let users = {
     },
     questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
   },
-  johndoe: {
-    id: 'johndoe',
-    name: 'John Doe',
+  janedoe: {
+    id: 'janedoe',
+    name: 'Jane Doe',
     avatarURL: '../../images/leaf.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
@@ -50,14 +50,14 @@ let questions = {
   },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
-    author: 'johndoe',
+    author: 'janedoe',
     timestamp: 1468479767190,
     optionOne: {
       votes: [],
       text: 'become a superhero',
     },
     optionTwo: {
-      votes: ['johndoe', 'sarahedo'],
+      votes: ['janedoe', 'sarahedo'],
       text: 'become a supervillian'
     }
   },
@@ -96,16 +96,16 @@ let questions = {
       text: 'find $50 yourself',
     },
     optionTwo: {
-      votes: ['johndoe'],
+      votes: ['janedoe'],
       text: 'have your best friend find $500'
     }
   },
   "xj352vofupe1dqz9emx13r": {
     id: 'xj352vofupe1dqz9emx13r',
-    author: 'johndoe',
+    author: 'janedoe',
     timestamp: 1493579767190,
     optionOne: {
-      votes: ['johndoe'],
+      votes: ['janedoe'],
       text: 'write JavaScript',
     },
     optionTwo: {
@@ -130,6 +130,7 @@ export function _getQuestions () {
     setTimeout(() => res({...questions}), 1000)
   })
 }
+
 
 function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {
@@ -199,4 +200,10 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
       res()
     }, 500)
   })
+}
+
+export function formatDate (timestamp) {
+  const d = new Date(timestamp)
+  const time = d.toLocaleTimeString('en-US')
+  return time.substr(0, 5) + time.slice(-2) + ', ' + d.toLocaleDateString()
 }

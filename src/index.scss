@@ -1,0 +1,285 @@
+body {
+	margin: 50px 0;
+	padding: 0;
+	font-family: sans-serif;
+	background:{
+		image: url(https://previews.123rf.com/images/irinarivoruchko/irinarivoruchko1508/irinarivoruchko150800299/44120199-seamless-monochrome-ornate-pattern-hand-drawn-mandala-texture-vintage-indian-style.jpg);
+		size: 400px;
+	}
+}
+
+button{
+	transition: all .25s;
+}
+
+
+$black-panther : rgb(50, 50, 50);
+$red-skull : rgb(198,31,31);
+$white-mantle : rgb(255,255,255);
+$green-lantern : rgb(63,122,62);
+$blue-footballs : rgb(88,102,124);
+
+$border-radius : 10px;
+
+.container{
+	position: relative;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	color: $black-panther;
+	border-left: 3px solid $black-panther;
+	border-right: 3px solid $black-panther;
+	border-bottom: 3px solid $black-panther;
+	border-radius: 0 0 $border-radius $border-radius;
+	box-sizing: border-box;
+	overflow: hidden;
+	&.main{
+		border-top: 10px solid $black-panther;
+		
+	}
+	&-inner{
+		padding: 25px;
+		background-color: rgb(245,245,245);
+	}
+	&-topbar{
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 15px;
+		background-color: $black-panther;
+		box-sizing: border-box;
+		.topbar-user{
+			font-weight: 700;
+			color: $white-mantle;
+		}
+		.logout-button{
+			border: 1px solid $white-mantle;
+			transition: .25s;
+			background-color: transparent;
+			color: $white-mantle;
+			border-radius: $border-radius;
+			margin-left: auto;
+			padding: 10px;
+			&:hover{
+				background-color: $red-skull;
+			}
+		}
+		img{
+			display: block;
+			width: 50px;
+			height: 50px;
+			margin-right: 10px;
+			border: 1px solid $white-mantle;
+			border-radius: 50%;
+			overflow: hidden;
+			background: red;
+		}
+		>*:last-child{
+			margin-left: auto;
+		}
+		&-user{
+			font-weight: 700;
+			color: $white-mantle;
+		}
+	}
+	& + .container{
+		margin-top: 50px;
+	}
+	&-header{
+		margin: 0 0 4px 0;
+		padding: 0 0 12px 0;
+		border-bottom: 1px solid $white-mantle;
+		text-transform: uppercase;
+		color: $black-panther;
+		font-size: 1.5rem;
+		border-bottom: 2px solid $black-panther;
+	}
+	ul, ol{
+		padding: 0;
+		list-style: none;
+	}
+}
+
+.system-message{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(200,200,200, .5);
+	color: $black-panther;
+	font-weight: 700;
+	font-size: 3rem;
+}
+button.row{
+	background-color: transparent;
+	color: inherit;
+	border: 1px solid $black-panther;
+	padding: 10px;
+	border-radius: $border-radius;
+	&:hover,
+	&:active,
+	&:focus{
+		background-color: rgb(215,215,215);
+	}
+	&:disabled{
+		background-color: rgba($red-skull,.25);
+		color: $red-skull;
+		border-color: $red-skull;
+	}
+	&.delete{
+		flex: none;
+		justify-content: center;
+		width: 35px;
+		background-color: $red-skull;
+		color: $white-mantle;
+		font-weight: 700;
+		border: 2px solid darken($red-skull, 10%);
+		&:hover{
+			background-color: $black-panther;
+			border-color: $black-panther;
+		}
+	}
+}
+
+.submit-container{
+	display: flex;
+	flex: none;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.wrap-row{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	>*{
+		margin: 5px;
+		flex: 1;
+	}
+	&-name{
+		flex: none;
+	}
+	& + .wrap-row{
+		margin-top: 20px;
+	}
+}
+
+.row{
+	display: flex;
+	align-items: center;
+	&.with-image{
+		$color-list: $red-skull, $green-lantern, $blue-footballs;
+		border-width: 3px;
+		@for $i from 1 through length($color-list){
+			&:nth-child(#{$i}){
+				$current-color: nth($color-list, $i);
+				border-color: $current-color;
+				img{
+					border-color: $current-color;
+				}
+			}
+		}
+		img{
+			flex: none;
+			width: 40px;
+			height: 40px;
+			margin-right: 5px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			overflow: hidden;
+		}
+	}
+	.name{
+		flex: 1;
+		font-weight: 700;
+		font-size: 1rem;
+	}
+	&.active, &.inactive{
+		justify-content: center;
+		border-radius: $border-radius;
+		padding: 10px;
+		font:{
+			weight: 700;
+		}
+	}
+	&.active{
+		border: 2px solid darken($green-lantern, 10%);
+		background-color: $green-lantern;
+		color: $white-mantle;
+	}
+	&.inactive{
+		opacity: .25;
+		border:2px solid darken($blue-footballs, 10%);
+		background-color: $blue-footballs;
+		color: $white-mantle;
+	}
+}
+
+.chart{
+	flex: none;
+	height: 25px;
+	box-sizing: border-box;
+	font:{
+		weight: 700;
+	}
+	color: $white-mantle;
+	&-name{
+		font-weight: 700;
+		width: 100px;
+	}
+	&-container{
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		margin-left: auto;
+		margin-bottom: 5px;
+	}
+	.label{
+		flex: none;
+		width: 50%;
+		.one{
+			color: $green-lantern;
+			text-align: left;
+		}
+		.two{
+			color: $blue-footballs;
+			text-align: right;
+		}
+	}
+	&.one{
+		background-color: $green-lantern;
+	}
+	&.two{
+		flex: 1;
+		background-color: $blue-footballs;
+	}
+}
+
+.option-container{
+	& + .option-container{
+		margin-left: 15px;
+	}
+	textarea{
+		width: 100%;
+		min-height: 50px;
+	}
+}
+
+.question-details{
+	flex: none;
+	width: 100%;
+	padding-right: 10px;
+	color: $black-panther;
+	font:{
+		size: .85rem;
+		weight: 700;
+		style: italic;
+	}
+	text-align: right;
+	box-sizing: border-box;
+}

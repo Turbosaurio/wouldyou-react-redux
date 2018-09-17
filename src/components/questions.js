@@ -3,20 +3,50 @@ import {connect} from 'react-redux'
 import Button from './button'
 
 import Container from './window-container'
-
+import OptionButton from './OptionButton'
+import {formatDate} from '../utils/_DATA'
 
 class Questions extends Component{
 
-	getOptions(obj, id){
-		let updateQuestion = (id) =>{
-			//// todo dispatch update question answer
-		}
+	changeOption(text){
+		//// todo dispatch update question answer
+		console.log(text)
+	}
+
+
+	questionOptionsAnswered(obj, id){
+		const
+			one = obj.optionOne.text,
+			two = obj.optionTwo.text
 		return (
 			<Fragment>
-				<button disabled onClick={updateQuestion} className="row">{obj.optionOne.text}</button>
-				<button disabled onClick={updateQuestion} className="row">{obj.optionTwo.text}</button>
+				<div className="row active">{one}</div>
+				<div className="row inactive">{two}</div>
+				<button className="row delete" title="Delete this question">X</button>
 			</Fragment>
 		)
+	}
+
+	questionOptionsButtons(obj, id){
+		const
+			one = obj.optionOne.text,
+			two = obj.optionTwo.text
+		return (
+			<Fragment>
+				<OptionButton action={() => this.changeOption(one)} label={one}/>
+				<OptionButton action={() => this.changeOption(two)} label={two}/>
+			</Fragment>
+		)
+	}
+	
+
+	filterAnswers(arr1, arr2){
+		let arr = arr1, newArr = arr2
+		for(let a of arr){
+			const i = arr2.indexOf(a)
+			arr2.splice(i, 1)
+		}
+		return newArr
 	}
 
 	render(){
@@ -26,8 +56,10 @@ class Questions extends Component{
 			questions,
 		} = this.props
 		const user = users[authedUser]
-		const questions_arr = Object.keys(questions)
 		const answers_arr = Object.keys(user.answers)
+		const all_questions = Object.keys(questions)
+		const questions_arr = this.filterAnswers(answers_arr, all_questions)
+		
 
 		return(
 			<Fragment>
@@ -37,10 +69,13 @@ class Questions extends Component{
 					{answers_arr.map((answers, i) =>{
 						const q = questions[answers]
 						return (
-							<li className="wrap-row" key={i}>
-								<div className="wrap-row-name">{i + 1}.</div>
-								{this.getOptions(q)}
-							</li>
+							<Fragment key={i}>
+								<li className="wrap-row">
+									<div className="question-details">{`Question created by ${users[q.author].name}, ${formatDate(q.timestamp)}`}</div>
+									<div className="wrap-row-name">{i + 1}.</div>
+									{this.questionOptionsAnswered(q)}
+								</li>
+							</Fragment>
 						)
 					})}
 					</ul>
@@ -54,11 +89,44 @@ class Questions extends Component{
 							return(
 								<li className="wrap-row" key={i}>
 									<div className="wrap-row-name">{i + 1}.</div>
-									{this.getOptions(q)}
+									{this.questionOptionsButtons(q)}
 								</li>
 							)
 						})
 					}
+					</ul>
+				</div>
+				<div className="container-inner">
+					<h2 className="container-header">Questions leaderboard</h2>
+					<ul>
+						{Object.keys(questions).map((question, i) => {
+							const q = questions[question]
+							const {optionOne, optionTwo} = q
+
+							const op1_votes = optionOne.votes.length
+							const op2_votes = optionTwo.votes.length
+							const total = op1_votes + op2_votes
+							const kek = op1_votes * 100 / total + "%"
+							const kak = op2_votes * 100 / total + "%"
+
+							const style1 = {
+								width: kek
+							}
+							const style2 = {
+								width: kak
+							}
+							return(
+								<li className="row">
+									<div className='chart-container'>
+										<div className="chart-name">{`Question ${i+1}: `}</div>						
+										<div className="chart one" style={style1}></div>
+										<div className="chart two" style={style2}></div>
+										<div className="label one">10</div>
+										<div className="label two">10</div>
+									</div>
+								</li>
+							)
+						})}
 					</ul>
 				</div>
 			</Fragment>
