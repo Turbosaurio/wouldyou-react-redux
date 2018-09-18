@@ -27,8 +27,8 @@ class App extends Component {
 						: <div>
 								{
 									authedUser === 'none'
-										? <SelectUser />
-										: <Dashboard />
+										? <SelectUser/>
+										: <Dashboard/>
 								}	
 							</div>
 					}

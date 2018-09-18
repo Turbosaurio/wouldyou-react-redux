@@ -53,7 +53,7 @@ button {
       margin-left: auto;
       padding: 10px; }
       .container-topbar .logout-button:hover {
-        background-color: #c61f1f; }
+        background-color: #58667c; }
     .container-topbar img {
       display: block;
       width: 50px;
@@ -100,8 +100,9 @@ button {
     border: 2px solid #323232;
     border-left: none;
     border-radius: 0 10px 10px 0;
-    background-color: whitesmoke; }
-    .dashboard-nav > a.current {
+    background-color: whitesmoke;
+    transition: .25s; }
+    .dashboard-nav > a[aria-current="page"] {
       background-color: #323232;
       color: white; }
 
@@ -195,16 +196,14 @@ button.row {
     justify-content: center;
     border-radius: 10px;
     padding: 10px;
-    font-weight: 700; }
+    font-weight: 700;
+    color: white; }
   .row.active {
     border: 2px solid #2e582d;
-    background-color: #3f7a3e;
-    color: white; }
+    background-color: #3f7a3e; }
   .row.inactive {
-    opacity: .25;
-    border: 2px solid #434d5e;
-    background-color: #58667c;
-    color: white; }
+    border: 2px solid #7d7d7d;
+    background-color: #969696; }
 
 .chart {
   flex: none;
@@ -225,16 +224,20 @@ button.row {
     margin-left: auto;
     margin-bottom: 5px; }
   .chart-description {
-    display: flex; }
+    display: flex;
+    justify-content: space-between; }
     .chart-description .label {
-      flex: 1;
-      font-weight: 700; }
+      flex: none;
+      width: 40%;
+      font-weight: 700;
+      padding-bottom: 5px;
+      text-align: center; }
       .chart-description .label.one {
-        color: #3f7a3e;
-        text-align: left; }
+        border-bottom: 2px solid #3f7a3e;
+        color: #3f7a3e; }
       .chart-description .label.two {
-        color: #58667c;
-        text-align: right; }
+        border-bottom: 2px solid #58667c;
+        color: #58667c; }
   .chart.one {
     background-color: #3f7a3e; }
   .chart.two {

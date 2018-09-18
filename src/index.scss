@@ -20,6 +20,7 @@ $green-lantern : rgb(63,122,62);
 $blue-footballs : rgb(88,102,124);
 $almost-white:  rgb(245,245,245);
 $border-radius : 10px;
+$jean-grey : rgb(150,150,150);
 
 .app-title{
 	margin:{
@@ -75,7 +76,7 @@ $border-radius : 10px;
 			margin-left: auto;
 			padding: 10px;
 			&:hover{
-				background-color: $red-skull;
+				background-color: $blue-footballs;
 			}
 		}
 		img{
@@ -134,7 +135,8 @@ $border-radius : 10px;
 		border-left: none;
 		border-radius: 0 $border-radius $border-radius 0;
 		background-color: $almost-white;
-		&.current{
+		transition: .25s;
+		&[aria-current="page"]{
 			background-color: $black-panther;
 			color: $white-mantle;
 		}
@@ -246,17 +248,15 @@ button.row{
 		font:{
 			weight: 700;
 		}
+		color: $white-mantle;
 	}
 	&.active{
 		border: 2px solid darken($green-lantern, 10%);
 		background-color: $green-lantern;
-		color: $white-mantle;
 	}
 	&.inactive{
-		opacity: .25;
-		border:2px solid darken($blue-footballs, 10%);
-		background-color: $blue-footballs;
-		color: $white-mantle;
+		border:2px solid darken($jean-grey, 10%);
+		background-color: $jean-grey;
 	}
 }
 
@@ -285,16 +285,20 @@ button.row{
 	}
 	&-description{
 		display: flex;
+		justify-content: space-between;
 		.label{
-			flex: 1;
+			flex: none;
+			width: 40%;
 			font-weight: 700;
+			padding-bottom: 5px;
+			text-align: center;
 			&.one{
+				border-bottom: 2px solid $green-lantern;
 				color: $green-lantern;
-				text-align: left;
 			}
 			&.two{
+				border-bottom: 2px solid $blue-footballs;
 				color: $blue-footballs;
-				text-align: right;
 			}
 		}
 	}
