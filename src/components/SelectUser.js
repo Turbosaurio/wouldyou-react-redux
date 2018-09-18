@@ -17,6 +17,7 @@ class SelectUser extends Component{
 		const users_arr = Object.keys(users)
 		return(
 			<div className="container main">
+				<h1 className="app-title">What would you rather?</h1>
 				<div className="container-inner">
 					<h2 className="container-header">Select a user</h2>
 					<div className="wrap-row">

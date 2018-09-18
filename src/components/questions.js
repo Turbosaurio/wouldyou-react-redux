@@ -5,6 +5,7 @@ import Button from './button'
 import Container from './window-container'
 import OptionButton from './OptionButton'
 import {formatDate} from '../utils/_DATA'
+import DashboardNav from './DashboardNav'
 
 class Questions extends Component{
 
@@ -14,14 +15,21 @@ class Questions extends Component{
 	}
 
 
-	questionOptionsAnswered(obj, id){
-		const
-			one = obj.optionOne.text,
-			two = obj.optionTwo.text
+	questionOptionsAnswered(obj, opt){
+		const {optionOne, optionTwo} = obj
 		return (
 			<Fragment>
-				<div className="row active">{one}</div>
-				<div className="row inactive">{two}</div>
+				{
+					opt === 'optionOne'
+						? <Fragment>
+							<div className="row active">{optionOne.text}</div>
+							<div className="row inactive">{optionTwo.text}</div>
+						</Fragment>
+						: <Fragment>
+							<div className="row inactive">{optionOne.text}</div>
+							<div className="row active">{optionTwo.text}</div>
+						</Fragment>
+				}	
 				<button className="row delete" title="Delete this question">X</button>
 			</Fragment>
 		)
@@ -63,6 +71,7 @@ class Questions extends Component{
 
 		return(
 			<Fragment>
+				<DashboardNav />
 				<div className="container-inner">
 					<h2 className="container-header">Questions Already Answered</h2>
 					<ul>
@@ -73,7 +82,7 @@ class Questions extends Component{
 								<li className="wrap-row">
 									<div className="question-details">{`Question created by ${users[q.author].name}, ${formatDate(q.timestamp)}`}</div>
 									<div className="wrap-row-name">{i + 1}.</div>
-									{this.questionOptionsAnswered(q)}
+									{this.questionOptionsAnswered(q, user.answers[answers])}
 								</li>
 							</Fragment>
 						)
@@ -106,23 +115,25 @@ class Questions extends Component{
 							const op1_votes = optionOne.votes.length
 							const op2_votes = optionTwo.votes.length
 							const total = op1_votes + op2_votes
-							const kek = op1_votes * 100 / total + "%"
-							const kak = op2_votes * 100 / total + "%"
+							const tot1 = op1_votes * 100 / total + "%"
+							const tot2 = op2_votes * 100 / total + "%"
 
-							const style1 = {
-								width: kek
+							const opt1 = {
+								width: tot1
 							}
-							const style2 = {
-								width: kak
+							const opt2 = {
+								width: tot2
 							}
 							return(
-								<li className="row">
+								<li className="chart-box">
+									<div className="chart-name">{`Question ${i+1}: `}</div>						
 									<div className='chart-container'>
-										<div className="chart-name">{`Question ${i+1}: `}</div>						
-										<div className="chart one" style={style1}></div>
-										<div className="chart two" style={style2}></div>
-										<div className="label one">10</div>
-										<div className="label two">10</div>
+										<div className="chart one" style={opt1}></div>
+										<div className="chart two" style={opt2}></div>
+									</div>
+									<div className="chart-description">
+										<div className="label one">{op1_votes}</div>
+										<div className="label two">{op2_votes}</div>
 									</div>
 								</li>
 							)
