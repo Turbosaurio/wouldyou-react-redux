@@ -9,13 +9,14 @@ export default function users( state ={}, action){
 			}
 		case SAVE_USER_ANSWER:
 			const {authedUser, qid, answer} = action
+			let answers = {
+				...state[authedUser].answers,
+				[qid] : answer,
+			}
 			return{
 				...state,
-				[authedUser] : {
-					answers :{
-						[qid] : answer
-					}
-				}
+				...[authedUser],
+				[authedUser] : { answers }
 			}
 		default:
 			return state

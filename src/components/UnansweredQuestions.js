@@ -53,16 +53,20 @@ class UnasweredQuestions extends Component{
 			<div className="container-inner">
 				<h2 className="container-header">Questions not yet answered</h2>
 				<ul>
-				{questions_arr
-					.map((question, i) => {
-						const q = questions[question]
-						return(
-							<li className="wrap-row" key={i}>
-								<div className="wrap-row-name">{i + 1}.</div>
-								{this.questionOptionsButtons(q, authedUser, question)}
-							</li>
-						)
-					})
+
+				{
+					questions_arr.length === 0
+						? <div className="">There are no more questions</div>
+						: questions_arr
+								.map((question, i) => {
+									const q = questions[question]
+									return(
+										<li className="wrap-row" key={i}>
+											<div className="wrap-row-name">{i + 1}.</div>
+											{this.questionOptionsButtons(q, authedUser, question)}
+										</li>
+									)
+								})		
 				}
 				</ul>
 			</div>
