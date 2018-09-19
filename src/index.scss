@@ -168,10 +168,16 @@ button.row{
 		background-color: rgb(215,215,215);
 	}
 	&:disabled{
-		background-color: rgba($red-skull,.25);
-		color: $red-skull;
-		border-color: $red-skull;
+		background-color: rgba($jean-grey,.25);
+		color: $jean-grey;
+		border-color: $jean-grey;
 	}
+
+	&.submit{
+		width: 100%;
+		justify-content: center;
+	}
+
 	&.delete{
 		flex: none;
 		justify-content: center;

@@ -2,17 +2,29 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 
 import OptionButton from './OptionButton'
+import {handleUpdateUserAnswer} from '../actions/users'
 
 class UnasweredQuestions extends Component{
 
-	questionOptionsButtons(obj, id){
+	saveQuestion(info){
+		const {dispatch} = this.props
+		dispatch(handleUpdateUserAnswer(info))
+	}
+
+	questionOptionsButtons(obj, authedUser, qid){
 		const
 			one = obj.optionOne.text,
 			two = obj.optionTwo.text
+		const answerInfo1 = {
+			authedUser, qid, answer: 'optionOne',
+		}
+		const answerInfo2 = {
+			authedUser, qid, answer: 'optionTwo',
+		}
 		return (
 			<Fragment>
-				<OptionButton action={() => this.changeOption(one)} label={one}/>
-				<OptionButton action={() => this.changeOption(two)} label={two}/>
+				<OptionButton action={() => this.saveQuestion(answerInfo1)} label={one}/>
+				<OptionButton action={() => this.saveQuestion(answerInfo2)} label={two}/>
 			</Fragment>
 		)
 	}
@@ -47,7 +59,7 @@ class UnasweredQuestions extends Component{
 						return(
 							<li className="wrap-row" key={i}>
 								<div className="wrap-row-name">{i + 1}.</div>
-								{this.questionOptionsButtons(q)}
+								{this.questionOptionsButtons(q, authedUser, question)}
 							</li>
 						)
 					})

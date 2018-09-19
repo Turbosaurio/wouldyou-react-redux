@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
-import ButtonWithImage from './button-w-image'
+//import ButtonWithImage from './button-w-image'
+import {Link, withRouter} from 'react-router-dom'
 
 import Container from './window-container'
 
@@ -22,18 +23,15 @@ class SelectUser extends Component{
 					<h2 className="container-header">Select a user</h2>
 					<div className="wrap-row">
 					{
-						users_arr.map((user) =>{
+						users_arr.map((user, i) =>{
 							const u = users[user]
 							return(
-								<ButtonWithImage
-									key={u.id}
-									action={()=> {this.handleSetAuthedUser(u.id)}}
-									imageUrl={u.avatarURL}
-									label={u.name}
-								/>
+								<button key={i} className="row with-image" onClick={() => {this.handleSetAuthedUser(u.id)}}>
+									<img src={u.avatarURL} alt={`${u.name}'s avatar`} />
+									<div className="name">{u.name}</div>
+								</button>
 							)
-						}
-						)
+						})
 					}
 					</div>
 				</div>

@@ -129,9 +129,12 @@ button.row {
   button.row:hover, button.row:active, button.row:focus {
     background-color: #d7d7d7; }
   button.row:disabled {
-    background-color: rgba(198, 31, 31, 0.25);
-    color: #c61f1f;
-    border-color: #c61f1f; }
+    background-color: rgba(150, 150, 150, 0.25);
+    color: #969696;
+    border-color: #969696; }
+  button.row.submit {
+    width: 100%;
+    justify-content: center; }
   button.row.delete {
     flex: none;
     justify-content: center;
