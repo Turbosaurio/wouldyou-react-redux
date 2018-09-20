@@ -87,7 +87,7 @@ button {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 80px;
+  bottom: 80px;
   left: 0;
   width: 250px; }
   .dashboard-nav a + a {
@@ -244,7 +244,6 @@ button.row {
   .chart.one {
     background-color: #3f7a3e; }
   .chart.two {
-    flex: 1;
     background-color: #58667c; }
 
 .option-container + .option-container {

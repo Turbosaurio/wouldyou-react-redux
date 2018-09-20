@@ -12,18 +12,32 @@ export default function questions( state = {}, action){
 				...action.questions,
 			}
 		case REMOVE_QUESTION_VOTE:
-			//state[action.questions.qid][action.questions.answer].votes = state[action.questions.qid][action.questions.answer].votes.filter((user) => user !== action.questions.authedUser )
-		
-			console.log("kek", action.questions.authedUser)
-			const {authedUser, qid, answer} = action.questions
-			state[qid][answer].votes = state[qid][answer].votes.filter((ans) => ans === authedUser)
 			return{
 				...state,
+				[action.questions.qid]:{
+					...state[action.questions.qid],
+					optionOne:{
+						...state[action.questions.qid].optionOne,
+						votes: state[action.questions.qid].optionOne.votes.filter( vote => vote !== action.questions.authedUser)
+					},
+					optionTwo:{
+						...state[action.questions.qid].optionTwo,
+						votes: state[action.questions.qid].optionTwo.votes.filter( vote => vote !== action.questions.authedUser)
+					}
+				}
 			}
+
+
 		case ADD_QUESTION_VOTE:
-			state[action.questions.qid][action.questions.answer].votes = state[action.questions.qid][action.questions.answer].votes.concat(action.questions.authedUser)
 			return{
 				...state,
+				[action.questions.qid]:{
+					...state[action.questions.qid],
+					[action.questions.answer]:{
+						...state[action.questions.qid][action.questions.answer],
+						votes: state[action.questions.qid][action.questions.answer].votes.concat(action.questions.authedUser)
+					}
+				}
 			}
 		default:
 			return state
