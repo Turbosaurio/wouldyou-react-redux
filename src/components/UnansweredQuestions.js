@@ -3,12 +3,14 @@ import {connect} from 'react-redux'
 
 import OptionButton from './OptionButton'
 import {handleUpdateUserAnswer} from '../actions/users'
+import {handleAddQuestionVote} from '../actions/questions'
 
 class UnasweredQuestions extends Component{
 
 	saveQuestion(info){
 		const {dispatch} = this.props
 		dispatch(handleUpdateUserAnswer(info))
+		dispatch(handleAddQuestionVote(info))
 	}
 
 	questionOptionsButtons(obj, authedUser, qid){

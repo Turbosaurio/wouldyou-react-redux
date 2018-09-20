@@ -27,15 +27,15 @@ class QuestionsLeaderboard extends Component{
 							width: tot2
 						}
 						return(
-							<li className="chart-box">
+							<li className="chart-box" key={question}>
 								<div className="chart-name">{`Question ${i+1}: `}</div>						
 								<div className='chart-container'>
 									<div className="chart one" style={opt1}></div>
 									<div className="chart two" style={opt2}></div>
 								</div>
 								<div className="chart-description">
-									<div className="label one">{`${op1_votes} users rather to: ${optionOne.text}`}</div>
-									<div className="label two">{`${op2_votes} users rather to: ${optionTwo.text}`}</div>
+									<div className="label one">{`${op1_votes} users rather: ${optionOne.text}`}</div>
+									<div className="label two">{`${op2_votes} users rather: ${optionTwo.text}`}</div>
 								</div>
 							</li>
 						)
