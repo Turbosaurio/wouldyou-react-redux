@@ -1,15 +1,22 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {formatDate} from '../utils/_DATA'
+import {handleRemoveQuestionVote} from '../actions/questions'
 
 class AnsweredQuestions extends Component{
 
-	removeQuestion(id){
-		//todo remove question from user.answers
+	removeQuestion(info){
+		const {dispatch} = this.props
+		dispatch(handleRemoveQuestionVote(info))
 	}
 
-	questionOptionsAnswered(obj, opt){
+	questionOptionsAnswered(obj, opt, qid){
 		const {optionOne, optionTwo} = obj
+		const info = {
+			authedUser: this.props.authedUser,
+			qid,
+			answer: opt
+		}
 		return (
 			<Fragment>
 				{
@@ -23,7 +30,7 @@ class AnsweredQuestions extends Component{
 							<div className="row active">{optionTwo.text}</div>
 						</Fragment>
 				}	
-				<button onClick={this.removeQuestion}className="row delete" title="Delete this question">X</button>
+				<button onClick={() => {this.removeQuestion(info)}} className="row delete" title="Delete this question">X</button>
 			</Fragment>
 		)
 	}
@@ -37,7 +44,6 @@ class AnsweredQuestions extends Component{
 
 		const user = users[authedUser]
 		const answers_arr = Object.keys(user.answers)
-		console.log("arr", answers_arr)
 		return(
 			<div className="container-inner">
 				<h2 className="container-header">Questions Already Answered</h2>
@@ -50,7 +56,7 @@ class AnsweredQuestions extends Component{
 								<li className="wrap-row">
 									<div className="question-details">{`Question created by ${users[q.author].name}, ${formatDate(q.timestamp)}`}</div>
 									<div className="wrap-row-name">{i + 1}.</div>
-									{this.questionOptionsAnswered(q, user.answers[answer])}
+									{this.questionOptionsAnswered(q, user.answers[answer], answer)}
 								</li>
 							</Fragment>
 						)

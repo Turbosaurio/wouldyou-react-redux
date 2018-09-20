@@ -26,7 +26,7 @@ function addQuestionVote(questions){
 	}
 }
 
-export function HandleRemoveQuestionVote(info){
+export function handleRemoveQuestionVote(info){
 	return (dispatch) => {
 		dispatch(removeQuestionVote(info))
 		return _saveQuestionAnswer(info)

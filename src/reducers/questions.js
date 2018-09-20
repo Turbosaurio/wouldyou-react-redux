@@ -12,12 +12,16 @@ export default function questions( state = {}, action){
 				...action.questions,
 			}
 		case REMOVE_QUESTION_VOTE:
+			//state[action.questions.qid][action.questions.answer].votes = state[action.questions.qid][action.questions.answer].votes.filter((user) => user !== action.questions.authedUser )
+		
+			console.log("kek", action.questions.authedUser)
+			const {authedUser, qid, answer} = action.questions
+			state[qid][answer].votes = state[qid][answer].votes.filter((ans) => ans === authedUser)
 			return{
 				...state,
 			}
 		case ADD_QUESTION_VOTE:
-			const {authedUser, qid, answer} = action.questions
-			state[qid][answer].votes = state[qid][answer].votes.concat(authedUser)
+			state[action.questions.qid][action.questions.answer].votes = state[action.questions.qid][action.questions.answer].votes.concat(action.questions.authedUser)
 			return{
 				...state,
 			}
