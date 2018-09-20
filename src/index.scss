@@ -15,16 +15,19 @@ button{
 
 $black-panther : rgb(50, 50, 50);
 $red-skull : rgb(198,31,31);
-$white-mantle : rgb(255,255,255);
+$snow-white : rgb(255,255,255);
 $green-lantern : rgb(63,122,62);
-$blue-footballs : rgb(88,102,124);
+$blue-demon : rgb(88,102,124);
 $almost-white:  rgb(245,245,245);
-$border-radius : 10px;
 $jean-grey : rgb(150,150,150);
+$orange-mocca-frapuccino :  rgb(206,149,35);
+$violet-marv : rgb(168,99,168);
+
+$border-radius : 10px;
 
 .app-title{
 	margin:{
-		top: -0;
+		top: 0;
 		bottom: 0;
 	}
 	padding: 15px;
@@ -35,7 +38,7 @@ $jean-grey : rgb(150,150,150);
 	box-sizing: border-box;
 	width: 100%;
 	background-color: $black-panther;
-	color: $white-mantle;
+	color: $snow-white;
 }
 
 .container{
@@ -65,18 +68,18 @@ $jean-grey : rgb(150,150,150);
 		box-sizing: border-box;
 		.topbar-user{
 			font-weight: 700;
-			color: $white-mantle;
+			color: $snow-white;
 		}
 		.logout-button{
-			border: 1px solid $white-mantle;
+			border: 1px solid $snow-white;
 			transition: .25s;
 			background-color: transparent;
-			color: $white-mantle;
+			color: $snow-white;
 			border-radius: $border-radius;
 			margin-left: auto;
 			padding: 10px;
 			&:hover{
-				background-color: $blue-footballs;
+				background-color: $blue-demon;
 			}
 		}
 		img{
@@ -84,17 +87,16 @@ $jean-grey : rgb(150,150,150);
 			width: 50px;
 			height: 50px;
 			margin-right: 10px;
-			border: 1px solid $white-mantle;
+			border: 3px solid $black-panther;
 			border-radius: 50%;
 			overflow: hidden;
-			background: red;
 		}
 		>*:last-child{
 			margin-left: auto;
 		}
 		&-user{
 			font-weight: 700;
-			color: $white-mantle;
+			color: $snow-white;
 		}
 	}
 	& + .container{
@@ -103,7 +105,7 @@ $jean-grey : rgb(150,150,150);
 	&-header{
 		margin: 0 0 4px 0;
 		padding: 0 0 12px 0;
-		border-bottom: 1px solid $white-mantle;
+		border-bottom: 1px solid $snow-white;
 		text-align: center;
 		text-transform: uppercase;
 		color: $black-panther;
@@ -138,7 +140,7 @@ $jean-grey : rgb(150,150,150);
 		transition: .25s;
 		&[aria-current="page"]{
 			background-color: $black-panther;
-			color: $white-mantle;
+			color: $snow-white;
 		}
 	}
 }
@@ -183,7 +185,7 @@ button.row{
 		justify-content: center;
 		width: 35px;
 		background-color: $red-skull;
-		color: $white-mantle;
+		color: $snow-white;
 		font-weight: 700;
 		border: 2px solid darken($red-skull, 10%);
 		&:hover{
@@ -221,7 +223,7 @@ button.row{
 	display: flex;
 	align-items: center;
 	&.with-image{
-		$color-list: $red-skull, $green-lantern, $blue-footballs;
+		$color-list: $red-skull, $green-lantern, $blue-demon;
 		border-width: 3px;
 		@for $i from 1 through length($color-list){
 			&:nth-child(#{$i}){
@@ -254,7 +256,7 @@ button.row{
 		font:{
 			weight: 700;
 		}
-		color: $white-mantle;
+		color: $snow-white;
 	}
 	&.active{
 		border: 2px solid darken($green-lantern, 10%);
@@ -267,16 +269,29 @@ button.row{
 }
 
 .chart{
+	position: relative;
 	flex: none;
 	height: 25px;
 	box-sizing: border-box;
 	font:{
 		weight: 700;
 	}
+
+	&:before{
+		content: "";
+		display: block;
+		position: absolute;
+		top: calc(100% + 5px);
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
+		border-bottom-width: 6px;
+		border-bottom-style: solid;
+	}
+
 	&-box + &-box{
 		margin-top: 20px;
 	}
-	color: $white-mantle;
+	color: $snow-white;
 	&-name{
 		font-weight: 700;
 		margin-bottom: 5px;
@@ -294,25 +309,44 @@ button.row{
 		justify-content: space-between;
 		.label{
 			flex: none;
-			width: 40%;
-			font-weight: 700;
+			width: calc(50% - 15px);
+			font-weight: 400;
+			margin-top: 5px;
+			padding-top: 5px;
 			padding-bottom: 5px;
 			text-align: center;
+			box-sizing: border-box;
 			&.one{
-				border-bottom: 2px solid $green-lantern;
-				color: $green-lantern;
+				margin-left: 5px;
+				padding-left: 5px;
+				text-align: left;
+				border-bottom: 2px solid $orange-mocca-frapuccino;
+				border-left: 2px solid $orange-mocca-frapuccino;
+				color: $orange-mocca-frapuccino;
 			}
 			&.two{
-				border-bottom: 2px solid $blue-footballs;
-				color: $blue-footballs;
+				margin-right: 5px;
+				padding-right: 5px;
+				text-align: right;
+				border-bottom: 2px solid $violet-marv;
+				border-right: 2px solid $violet-marv;
+				color: $violet-marv;
 			}
 		}
 	}
 	&.one{
-		background-color: $green-lantern;
+		background-color: $orange-mocca-frapuccino;
+		color: $orange-mocca-frapuccino;
+		&:before{
+			left: 0;
+		}
 	}
 	&.two{
-		background-color: $blue-footballs;
+		background-color: $violet-marv;
+		color: $violet-marv;
+		&:before{
+			right: 0;
+		}
 	}
 }
 

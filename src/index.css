@@ -9,7 +9,7 @@ button {
   transition: all .25s; }
 
 .app-title {
-  margin-top: -0;
+  margin-top: 0;
   margin-bottom: 0;
   padding: 15px;
   text-align: center;
@@ -59,10 +59,9 @@ button {
       width: 50px;
       height: 50px;
       margin-right: 10px;
-      border: 1px solid white;
+      border: 3px solid #323232;
       border-radius: 50%;
-      overflow: hidden;
-      background: red; }
+      overflow: hidden; }
     .container-topbar > *:last-child {
       margin-left: auto; }
     .container-topbar-user {
@@ -209,11 +208,21 @@ button.row {
     background-color: #969696; }
 
 .chart {
+  position: relative;
   flex: none;
   height: 25px;
   box-sizing: border-box;
   font-weight: 700;
   color: white; }
+  .chart:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: calc(100% + 5px);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom-width: 6px;
+    border-bottom-style: solid; }
   .chart-box + .chart-box {
     margin-top: 20px; }
   .chart-name {
@@ -231,20 +240,37 @@ button.row {
     justify-content: space-between; }
     .chart-description .label {
       flex: none;
-      width: 40%;
-      font-weight: 700;
+      width: calc(50% - 15px);
+      font-weight: 400;
+      margin-top: 5px;
+      padding-top: 5px;
       padding-bottom: 5px;
-      text-align: center; }
+      text-align: center;
+      box-sizing: border-box; }
       .chart-description .label.one {
-        border-bottom: 2px solid #3f7a3e;
-        color: #3f7a3e; }
+        margin-left: 5px;
+        padding-left: 5px;
+        text-align: left;
+        border-bottom: 2px solid #ce9523;
+        border-left: 2px solid #ce9523;
+        color: #ce9523; }
       .chart-description .label.two {
-        border-bottom: 2px solid #58667c;
-        color: #58667c; }
+        margin-right: 5px;
+        padding-right: 5px;
+        text-align: right;
+        border-bottom: 2px solid #a863a8;
+        border-right: 2px solid #a863a8;
+        color: #a863a8; }
   .chart.one {
-    background-color: #3f7a3e; }
+    background-color: #ce9523;
+    color: #ce9523; }
+    .chart.one:before {
+      left: 0; }
   .chart.two {
-    background-color: #58667c; }
+    background-color: #a863a8;
+    color: #a863a8; }
+    .chart.two:before {
+      right: 0; }
 
 .option-container + .option-container {
   margin-left: 15px; }
