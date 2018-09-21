@@ -52,7 +52,9 @@ class AnsweredQuestions extends Component{
 				<h2 className="container-header">Questions Already Answered</h2>
 				<ul>
 				{
-					answers_arr.map((answer, i)=>{
+					answers_arr.length === 0
+					? <div className="">The user has no answered any question</div>
+					: answers_arr.map((answer, i)=>{
 						const q =questions[answer]
 						return(
 							<Fragment key={i}>

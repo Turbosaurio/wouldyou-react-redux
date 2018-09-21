@@ -2,6 +2,7 @@ import {
 	RECEIVE_QUESTIONS,
 	REMOVE_QUESTION_VOTE,
 	ADD_QUESTION_VOTE,
+	ADD_NEW_QUESTION,
 } from '../actions/questions'
 
 export default function questions( state = {}, action){
@@ -27,6 +28,11 @@ export default function questions( state = {}, action){
 				}
 			}
 
+		case ADD_NEW_QUESTION:
+			console.log(ADD_NEW_QUESTION, action)
+			return{
+				...state,
+			}
 
 		case ADD_QUESTION_VOTE:
 			return{

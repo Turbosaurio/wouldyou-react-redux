@@ -1,8 +1,12 @@
-import {_saveQuestionAnswer} from '../utils/_DATA'
+import {
+	_saveQuestionAnswer,
+	_saveQuestion,
+} from '../utils/_DATA'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const REMOVE_QUESTION_VOTE = 'REMOVE_QUESTION_VOTE'
 export const ADD_QUESTION_VOTE = 'ADD_QUESTION_VOTE'
+export const ADD_NEW_QUESTION = "ADD_NEW_QUESTION"
 
 
 export function receiveQuestions(questions){
@@ -26,6 +30,15 @@ function addQuestionVote(questions){
 	}
 }
 
+function addNewQuestion({optionOneText, optionTwoText, author}){
+	return {
+		type: ADD_NEW_QUESTION,
+		optionOneText,
+		optionTwoText,
+		author
+	}
+}
+
 export function handleRemoveQuestionVote(info){
 	return (dispatch) => {
 		dispatch(removeQuestionVote(info))
@@ -45,6 +58,18 @@ export function handleAddQuestionVote(info){
 			.catch((e) => {
 				console.warn("Error while updating question", e)
 				dispatch(addQuestionVote(info))
+				alert("There was an error updating the question, try again.")
+			})
+	}
+}
+
+export function handleAddNewQuestion(info){
+	return (dispatch) => {
+		dispatch(addNewQuestion(info))
+		return _saveQuestion(info)
+			.catch((e) => {
+				console.warn("Error while updating question", e)
+				dispatch(addNewQuestion(info))
 				alert("There was an error updating the question, try again.")
 			})
 	}

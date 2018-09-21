@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
 
 import {connect} from 'react-redux'
-import {handleUpdateQuestion} from '../actions/questions'
+import {
+	handleUpdateQuestion,
+	handleAddNewQuestion
+} from '../actions/questions'
+
 
 class CreateQuestion extends Component{
 	state = {
@@ -25,9 +29,11 @@ class CreateQuestion extends Component{
 		e.preventDefault()
 		const {optionOne, optionTwo} = this.state
 		const {dispatch, authedUser} = this.props
-		const kek = {optionOne, optionTwo, authedUser}
-		console.log(kek)
-		//dispatch(handleUpdateQuestion(kek))
+		const kek = {
+			optionOne, optionTwo, authedUser
+		}
+		dispatch(handleAddNewQuestion(kek))
+
 	}
 
 	render(){

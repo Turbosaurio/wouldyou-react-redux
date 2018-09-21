@@ -1,7 +1,8 @@
 import {
 	RECEIVE_USERS,
 	ADD_USER_ANSWER,
-	REMOVE_USER_ANSWER
+	REMOVE_USER_ANSWER,
+	ADD_USER_QUESTION,
 } from '../actions/users'
 
 export default function users( state ={}, action){
@@ -31,6 +32,20 @@ export default function users( state ={}, action){
 					answers,
 				}
 			}
+			case ADD_USER_QUESTION:
+				let kek = {
+					...state,
+					[action.author] : {
+						...state[action.author],
+						questions: {
+							...state[action.author].questions.concat(action.question)
+
+						}
+					}
+				}
+				return{
+					...state
+				}
 		default:
 			return state
 	}
