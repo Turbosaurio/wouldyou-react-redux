@@ -1,7 +1,8 @@
 import {_saveQuestionAnswer} from '../utils/_DATA'
 
 export const RECEIVE_USERS = 'RECEIVE_USERS'
-export const SAVE_USER_ANSWER = 'SAVE_USER_ANSWER'
+export const ADD_USER_ANSWER = 'ADD_USER_ANSWER'
+export const REMOVE_USER_ANSWER = 'REMOVE_USER_ANSWER'
 
 export function receiveUsers(users){
 	return{
@@ -10,21 +11,44 @@ export function receiveUsers(users){
 	}
 }
 
-function updateUserAnswer({authedUser, qid, answer}){
+function addUserAnswer({authedUser, qid, answer}){
 	return {
-		type: SAVE_USER_ANSWER,
+		type: ADD_USER_ANSWER,
 		authedUser,
 		qid,
 		answer
 	}
 }
-export function handleUpdateUserAnswer(info){
+
+function removeUserAnswer({authedUser, qid, answer}){
+	return {
+		type: REMOVE_USER_ANSWER,
+		authedUser,
+		qid,
+		answer
+	}
+}
+
+
+export function handleAddUserAnswer(info){
 	return (dispatch) => {
-		dispatch(updateUserAnswer(info))
+		dispatch(addUserAnswer(info))
 		return _saveQuestionAnswer(info)
 			.catch((e) => {
 				console.warn("Error while updating question", e)
-				dispatch(updateUserAnswer(info))
+				dispatch(addUserAnswer(info))
+				alert("There was an error updating the question, try again.")
+			})
+	}
+}
+
+export function handleRemoveUserAnswer(info){
+	return (dispatch) => {
+		dispatch(removeUserAnswer(info))
+		return _saveQuestionAnswer(info)
+			.catch((e) => {
+				console.warn("Error while updating question", e)
+				dispatch(removeUserAnswer(info))
 				alert("There was an error updating the question, try again.")
 			})
 	}

@@ -1,4 +1,8 @@
-import {RECEIVE_USERS, SAVE_USER_ANSWER} from '../actions/users'
+import {
+	RECEIVE_USERS,
+	ADD_USER_ANSWER,
+	REMOVE_USER_ANSWER
+} from '../actions/users'
 
 export default function users( state ={}, action){
 	switch (action.type){
@@ -7,11 +11,25 @@ export default function users( state ={}, action){
 				...state,
 				...action.users
 			}
-		case SAVE_USER_ANSWER:
-			const {authedUser, qid, answer} = action
-			state[authedUser].answers[qid] = answer
+		case ADD_USER_ANSWER:
 			return{
-				...state,	
+				...state,
+				[action.authedUser]:{
+					...state[action.authedUser],
+					answers:{
+						...state[action.authedUser].answers,
+						[action.qid] : action.answer
+					}
+				}				
+			}
+		case REMOVE_USER_ANSWER:
+			const { [action.qid] : _ , ...answers} = state[action.authedUser].answers
+			return{
+				...state,
+				[action.authedUser]:{
+					...state[action.authedUser],
+					answers,
+				}
 			}
 		default:
 			return state

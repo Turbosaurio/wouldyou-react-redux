@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {formatDate} from '../utils/_DATA'
+
+import {handleRemoveUserAnswer} from '../actions/users'
 import {handleRemoveQuestionVote} from '../actions/questions'
 
 class AnsweredQuestions extends Component{
@@ -8,6 +10,7 @@ class AnsweredQuestions extends Component{
 	removeQuestion(info){
 		const {dispatch} = this.props
 		dispatch(handleRemoveQuestionVote(info))
+		dispatch(handleRemoveUserAnswer(info))
 	}
 
 	questionOptionsAnswered(obj, opt, qid){
