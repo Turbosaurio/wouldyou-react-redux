@@ -8,6 +8,7 @@ import AnsweredQuestions from './AnsweredQuestions'
 import UnansweredQuestions from './UnansweredQuestions'
 import QuestionsLeaderboard from './QuestionsLeaderboard'
 import CreateQuestion from './CreateQuestion'
+import UserDetails from './UserDetails'
 
 function Dashboard(props){
 	return(
@@ -17,6 +18,7 @@ function Dashboard(props){
 			<Route path="/unanswered-questions"component={UnansweredQuestions} />
 			<Route path="/questions-leaderboard" component={QuestionsLeaderboard} />
 			<Route path="/create-question" component={CreateQuestion} />
+			<Route path="/user-details" component={UserDetails} />
 		</Container>
 	)
 }

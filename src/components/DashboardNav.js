@@ -8,6 +8,7 @@ function DashboardNav (props){
 			<NavLink to="/unanswered-questions">Questions not answered</NavLink>
 			<NavLink to="/questions-leaderboard">Questions leaderboard</NavLink>
 			<NavLink to="/create-question">Create a question</NavLink>
+			<NavLink to="/user-details">View User Details</NavLink>
 		</nav>
 	)
 }

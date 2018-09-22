@@ -3,6 +3,11 @@ import {
 	_saveQuestion,
 } from '../utils/_DATA'
 
+import {
+	addQuestionToUser
+} from '../actions/users'
+
+
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const REMOVE_QUESTION_VOTE = 'REMOVE_QUESTION_VOTE'
 export const ADD_QUESTION_VOTE = 'ADD_QUESTION_VOTE'
@@ -66,6 +71,8 @@ export function handleAddNewQuestion(info){
 		return _saveQuestion(info)
 			.then((question)=> {
 				dispatch(addNewQuestion(question))
+				dispatch(addQuestionToUser(question))
+				alert('Adding question succesful')
 			})
 			.catch((e) => {
 				console.warn("Error while creating the question", e)

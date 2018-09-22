@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 class QuestionsLeaderboard extends Component{
 	render(){
 		const {
-			users, questions
+			questions
 		} = this.props
 		return(
 			<div className="container-inner">
@@ -46,9 +46,8 @@ class QuestionsLeaderboard extends Component{
 	}
 }
 
-const mapStateToProps = ({users, questions}) =>{
+const mapStateToProps = ({questions}) =>{
 	return {
-		users,
 		questions,
 	}
 }

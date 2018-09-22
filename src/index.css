@@ -201,11 +201,12 @@ button.row {
     font-weight: 700;
     color: white; }
   .row.active {
-    border: 2px solid #2e582d;
-    background-color: #3f7a3e; }
+    border: 2px solid #8b4d8b;
+    background-color: #a863a8; }
   .row.inactive {
-    border: 2px solid #7d7d7d;
-    background-color: #969696; }
+    border: 2px solid #a2751c;
+    background-color: #ce9523;
+    opacity: .25; }
 
 .chart {
   position: relative;
@@ -289,3 +290,15 @@ button.row {
   font-style: italic;
   text-align: right;
   box-sizing: border-box; }
+
+.user-details .time {
+  font-weight: 700; }
+
+.user-details + .user-details {
+  margin-top: 25px; }
+
+span.text {
+  color: #a863a8;
+  font-weight: 700; }
+  span.text.chosen {
+    color: #ce9523; }

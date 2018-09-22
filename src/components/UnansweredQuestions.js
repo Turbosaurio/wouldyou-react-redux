@@ -60,11 +60,10 @@ class UnasweredQuestions extends Component{
 					questions_arr.length === 0
 						? <div className="">There are no more questions</div>
 						: questions_arr
-								.map((question, i) => {
+								.map((question) => {
 									const q = questions[question]
 									return(
-										<li className="wrap-row" key={i}>
-											<div className="wrap-row-name">{i + 1}.</div>
+										<li className="wrap-row" key={question}>
 											{this.questionOptionsButtons(q, authedUser, question)}
 										</li>
 									)

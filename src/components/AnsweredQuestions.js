@@ -54,13 +54,11 @@ class AnsweredQuestions extends Component{
 				{
 					answers_arr.length === 0
 					? <div className="">The user has no answered any question</div>
-					: answers_arr.map((answer, i)=>{
+					: answers_arr.map((answer)=>{
 						const q =questions[answer]
 						return(
-							<Fragment key={i}>
+							<Fragment key={answer}>
 								<li className="wrap-row">
-									<div className="question-details">{`Question created by ${users[q.author].name}, ${formatDate(q.timestamp)}`}</div>
-									<div className="wrap-row-name">{i + 1}.</div>
 									{this.questionOptionsAnswered(q, user.answers[answer], answer)}
 								</li>
 							</Fragment>

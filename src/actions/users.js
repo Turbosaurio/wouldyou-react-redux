@@ -3,7 +3,8 @@ import {_saveQuestionAnswer, _saveQuestion} from '../utils/_DATA'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ADD_USER_ANSWER = 'ADD_USER_ANSWER'
 export const REMOVE_USER_ANSWER = 'REMOVE_USER_ANSWER'
-export const ADD_USER_QUESTION = 'ADD_USER_QUESTION'
+// export const ADD_USER_QUESTION = 'ADD_USER_QUESTION'
+export const ADD_QUESTION_TO_USER = 'ADD_QUESTION_TO_USER'
 
 export function receiveUsers(users){
 	return{
@@ -30,10 +31,17 @@ function removeUserAnswer({authedUser, qid, answer}){
 	}
 }
 
-function addUserQuestion(authedUser){
+// function addUserQuestion(authedUser){
+// 	return{
+// 		type: ADD_USER_QUESTION,
+// 		authedUser
+// 	}
+// }
+
+export function addQuestionToUser(question){
 	return{
-		type: ADD_USER_QUESTION,
-		authedUser
+		type: ADD_QUESTION_TO_USER,
+		question
 	}
 }
 
@@ -62,14 +70,14 @@ export function handleRemoveUserAnswer(info){
 	}
 }
 
-export function handleAddUserQuestion(info){
-	return (dispatch) => {
-		dispatch(addUserQuestion(info))
-		return _saveQuestion(info)
-			.catch((e) => {
-				console.warn("Error while adding the user's question", e)
-				dispatch(addUserQuestion(info))
-				alert("There was an error while adding the user's question, try again.")
-			})
-	}
-}
+// export function handleAddUserQuestion(info){
+// 	return (dispatch) => {
+// 		dispatch(addUserQuestion(info))
+// 		return _saveQuestion(info)
+// 			.catch((e) => {
+// 				console.warn("Error while adding the user's question", e)
+// 				dispatch(addUserQuestion(info))
+// 				alert("There was an error while adding the user's question, try again.")
+// 			})
+// 	}
+// }

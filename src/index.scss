@@ -259,12 +259,13 @@ button.row{
 		color: $snow-white;
 	}
 	&.active{
-		border: 2px solid darken($green-lantern, 10%);
-		background-color: $green-lantern;
+		border: 2px solid darken($violet-marv, 10%);
+		background-color: $violet-marv;
 	}
 	&.inactive{
-		border:2px solid darken($jean-grey, 10%);
-		background-color: $jean-grey;
+		border:2px solid darken($orange-mocca-frapuccino, 10%);
+		background-color: $orange-mocca-frapuccino;
+		opacity: .25;
 	}
 }
 
@@ -372,4 +373,23 @@ button.row{
 	}
 	text-align: right;
 	box-sizing: border-box;
+}
+
+.user-details{
+	.time{
+		font-weight: 700;
+	}
+	& + .user-details{
+		margin-top: 25px;
+	}
+	.description{
+	}
+}
+
+span.text{
+	color: $violet-marv;
+	font-weight: 700;
+	&.chosen{
+		color: $orange-mocca-frapuccino;
+	}
 }
