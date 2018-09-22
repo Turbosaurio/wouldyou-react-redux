@@ -43,9 +43,9 @@ export function handleAddUserAnswer(info){
 		dispatch(addUserAnswer(info))
 		return _saveQuestionAnswer(info)
 			.catch((e) => {
-				console.warn("Error while updating question", e)
+				console.warn("Error while updating user's answer", e)
 				dispatch(addUserAnswer(info))
-				alert("There was an error updating the question, try again.")
+				alert("There was an error updating the user's answer, try again.")
 			})
 	}
 }
@@ -55,9 +55,9 @@ export function handleRemoveUserAnswer(info){
 		dispatch(removeUserAnswer(info))
 		return _saveQuestionAnswer(info)
 			.catch((e) => {
-				console.warn("Error while updating question", e)
+				console.warn("Error while updating user's answer", e)
 				dispatch(removeUserAnswer(info))
-				alert("There was an error updating the question, try again.")
+				alert("There was an error updating the user's answer, try again.")
 			})
 	}
 }
@@ -67,9 +67,9 @@ export function handleAddUserQuestion(info){
 		dispatch(addUserQuestion(info))
 		return _saveQuestion(info)
 			.catch((e) => {
-				console.warn("Error while updating question", e)
+				console.warn("Error while adding the user's question", e)
 				dispatch(addUserQuestion(info))
-				alert("There was an error updating the question, try again.")
+				alert("There was an error while adding the user's question, try again.")
 			})
 	}
 }

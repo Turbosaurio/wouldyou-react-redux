@@ -29,9 +29,11 @@ export default function questions( state = {}, action){
 			}
 
 		case ADD_NEW_QUESTION:
-			console.log(ADD_NEW_QUESTION, action)
 			return{
 				...state,
+				[action.info.id]:{
+					...action.info
+				}
 			}
 
 		case ADD_QUESTION_VOTE:

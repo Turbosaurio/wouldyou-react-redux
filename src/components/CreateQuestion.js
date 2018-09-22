@@ -29,10 +29,12 @@ class CreateQuestion extends Component{
 		e.preventDefault()
 		const {optionOne, optionTwo} = this.state
 		const {dispatch, authedUser} = this.props
-		const kek = {
-			optionOne, optionTwo, authedUser
+		const newQuestion = {
+			optionOneText: optionOne,
+			optionTwoText: optionTwo,
+			author: authedUser
 		}
-		dispatch(handleAddNewQuestion(kek))
+		dispatch(handleAddNewQuestion(newQuestion))
 
 	}
 

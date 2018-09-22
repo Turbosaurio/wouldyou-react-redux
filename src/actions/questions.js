@@ -30,12 +30,10 @@ function addQuestionVote(questions){
 	}
 }
 
-function addNewQuestion({optionOneText, optionTwoText, author}){
+function addNewQuestion(info){
 	return {
 		type: ADD_NEW_QUESTION,
-		optionOneText,
-		optionTwoText,
-		author
+		info
 	}
 }
 
@@ -44,9 +42,9 @@ export function handleRemoveQuestionVote(info){
 		dispatch(removeQuestionVote(info))
 		return _saveQuestionAnswer(info)
 			.catch((e) => {
-				console.warn("Error while updating question", e)
+				console.warn("Error while removing question vote", e)
 				dispatch(removeQuestionVote(info))
-				alert("There was an error updating the question, try again.")
+				alert("There was an while removing question vote, try again.")
 			})
 	}
 }
@@ -56,21 +54,22 @@ export function handleAddQuestionVote(info){
 		dispatch(addQuestionVote(info))
 		return _saveQuestionAnswer(info)
 			.catch((e) => {
-				console.warn("Error while updating question", e)
+				console.warn("Error while adding question vote", e)
 				dispatch(addQuestionVote(info))
-				alert("There was an error updating the question, try again.")
+				alert("There was an error while adding the question vote, try again.")
 			})
 	}
 }
 
 export function handleAddNewQuestion(info){
 	return (dispatch) => {
-		dispatch(addNewQuestion(info))
 		return _saveQuestion(info)
+			.then((question)=> {
+				dispatch(addNewQuestion(question))
+			})
 			.catch((e) => {
-				console.warn("Error while updating question", e)
-				dispatch(addNewQuestion(info))
-				alert("There was an error updating the question, try again.")
+				console.warn("Error while creating the question", e)
+				alert("There was an error while creating the question, try again.")
 			})
 	}
 }
