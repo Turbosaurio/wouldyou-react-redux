@@ -10,7 +10,7 @@ class QuestionsLeaderboard extends Component{
 			<div className="container-inner">
 				<h2 className="container-header">Questions leaderboard</h2>
 				<ul>
-					{Object.keys(questions).map((question, i) => {
+					{Object.keys(questions).map((question) => {
 						const q = questions[question]
 						const {optionOne, optionTwo} = q
 
@@ -27,8 +27,7 @@ class QuestionsLeaderboard extends Component{
 							width: tot2
 						}
 						return(
-							<li className="chart-box" key={question}>
-								<div className="chart-name">{`Question ${i+1}: `}</div>						
+							<li className="chart-box" key={question}>			
 								<div className='chart-container'>
 									<div className="chart one" style={opt1}></div>
 									<div className="chart two" style={opt2}></div>

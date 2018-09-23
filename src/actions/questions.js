@@ -72,7 +72,7 @@ export function handleAddNewQuestion(info){
 			.then((question)=> {
 				dispatch(addNewQuestion(question))
 				dispatch(addQuestionToUser(question))
-				alert('Adding question succesful')
+				alert('The new question was added succesfully')
 			})
 			.catch((e) => {
 				console.warn("Error while creating the question", e)

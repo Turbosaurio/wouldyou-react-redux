@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+
 
 import LoadingBar from 'react-redux-loading'
 
@@ -18,22 +18,20 @@ class App extends Component {
 		const {loading, authedUser} = this.props
 		const pleaseWait = <div className="system-message">Wait a moment</div>
 		return (
-			<Router>
-				<div>
-					<LoadingBar />
-					{
-						loading === true
-						? pleaseWait
-						: <div>
-								{
-									authedUser === 'none'
-										? <SelectUser/>
-										: <Dashboard/>
-								}	
-							</div>
-					}
-				</div>
-			</Router>
+			<div>
+				<LoadingBar />
+				{
+					loading === true
+					? pleaseWait
+					: <div>
+							{
+								authedUser === 'none'
+									? <SelectUser/>
+									: <Dashboard/>
+							}	
+						</div>
+				}
+			</div>
 		)
 	}
 }

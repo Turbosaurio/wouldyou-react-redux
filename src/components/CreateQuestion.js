@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 
 import {connect} from 'react-redux'
 import {
@@ -63,7 +63,9 @@ class CreateQuestion extends Component{
 	}
 }
 const mapStateToProps = ({authedUser}) =>{
-	return {authedUser}
+	return {
+		authedUser
+	}
 }
 
 export default connect(mapStateToProps)(CreateQuestion)

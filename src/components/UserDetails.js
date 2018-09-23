@@ -28,7 +28,9 @@ class UserDetails extends Component {
 					<h3>{`The user has answered ${Object.keys(user.answers).length} questions`}</h3>
 					<ul className="">
 						{
-							Object.keys(user.answers).map((answer) => {
+							Object.keys(user.answers)
+							 	.sort((a,b) => questions[a].timestamp - questions[b].timestamp)
+								.map((answer) => {
 								const a = user.answers[answer]
 								const q = questions[answer]
 								let one, two

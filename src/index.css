@@ -32,6 +32,7 @@ button {
   .container.main {
     border-top: 10px solid #323232; }
   .container-inner {
+    position: relative;
     padding: 25px;
     background-color: whitesmoke; }
   .container-topbar {
@@ -109,15 +110,16 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(200, 200, 200, 0.5);
+  background-color: rgba(200, 200, 200, 0.95);
   color: #323232;
   font-weight: 700;
-  font-size: 3rem; }
+  font-size: 3rem;
+  z-index: 10000; }
 
 button.row {
   background-color: transparent;
