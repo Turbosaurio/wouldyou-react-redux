@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
 //import ButtonWithImage from './button-w-image'
-import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom'
-import Container from './window-container'
+// import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom'
+// import Container from './window-container'
 
 class SelectUser extends Component{
 

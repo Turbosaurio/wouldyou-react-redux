@@ -1,16 +1,14 @@
-import React, {Component, Fragment} from 'react'
-
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {
-	//handleUpdateQuestion,
-	handleAddNewQuestion
-} from '../actions/questions'
+import {Redirect} from 'react-router-dom'
+import { handleAddNewQuestion } from '../actions/questions'
 
 
 class CreateQuestion extends Component{
 	state = {
 		optionOne: '',
-		optionTwo: ''
+		optionTwo: '',
+		toHome: false
 	}
 
 	handleChangeOne = (e) => {
@@ -35,21 +33,31 @@ class CreateQuestion extends Component{
 			author: authedUser
 		}
 		dispatch(handleAddNewQuestion(newQuestion))
-
+		this.setState(() =>{
+			return{
+				...this.state,
+				optionOne: '',
+				optionTwo: '',
+				toHome: true
+			}
+		})
 	}
 
 	render(){
+		 if( this.state.toHome === true){
+		 	return <Redirect to="/" />
+		 }
 		return(
 			<div className="container-inner">
 				<h2 className="container-header">Create a question</h2>
 				<div className="wrap-row">
-					<div className="option-container">
+					<div className="create-question-container">
 						<h3>Option One</h3>
-						<textarea onChange={this.handleChangeOne}className=""/>
+						<textarea onChange={this.handleChangeOne} placeholder="write optione one" className="">{this.state.optionOne}</textarea>
 					</div>
-					<div className="option-container">
+					<div className="create-question-container">
 						<h3>Option Two</h3>
-						<textarea onChange={this.handleChangeTwo}className=""/>
+						<textarea onChange={this.handleChangeTwo} placeholder="write optione two" className="">{this.state.optionTwo}</textarea>
 					</div>
 				</div>
 				<div className="submit-container">

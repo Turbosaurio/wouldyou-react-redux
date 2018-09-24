@@ -7,9 +7,21 @@ body {
 		size: 300px;
 	}
 }
-
+a,
 button{
 	transition: all .25s;
+}
+
+@mixin hidden{
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	color: transparent;
+}
+
+.inner-text{
+	@include hidden;
 }
 
 
@@ -45,12 +57,13 @@ $border-radius : 10px;
 	position: relative;
 	width: 100%;
 	max-width: 800px;
-	margin: 0 auto;
+	margin: 0 auto 0 300px;
 	color: $black-panther;
-	border-left: 3px solid $black-panther;
+	border-left: 20px solid $black-panther;
 	border-right: 3px solid $black-panther;
 	border-bottom: 3px solid $black-panther;
 	box-sizing: border-box;
+	border-radius: 0 0 $border-radius $border-radius;
 	&.main{
 		border-top: 10px solid $black-panther;
 		
@@ -59,6 +72,7 @@ $border-radius : 10px;
 		position: relative;
 		padding: 25px;
 		background-color: $almost-white;
+		border-radius: 0 0 $border-radius 0;
 	}
 	&-topbar{
 		display: flex;
@@ -122,9 +136,9 @@ $border-radius : 10px;
 .dashboard-nav{
 	display: flex;
 	flex-direction: column;
-	position: fixed;
-	bottom: 80px;
-	left: 0;
+	position: absolute;
+	top: 0;
+	right: calc(100% + 20px);
 	width: 250px;
 	a + a{
 		margin-top: 5px;
@@ -135,8 +149,8 @@ $border-radius : 10px;
 		padding: 15px;
 		color: $black-panther;
 		border: 2px solid $black-panther;
-		border-left: none;
-		border-radius: 0 $border-radius $border-radius 0;
+		border-right: none;
+		border-radius: $border-radius 0 0 $border-radius;
 		background-color: $almost-white;
 		transition: .25s;
 		&[aria-current="page"]{
@@ -160,6 +174,7 @@ $border-radius : 10px;
 	font-size: 3rem;
 	z-index: 10000;
 }
+a.row,
 button.row{
 	background-color: transparent;
 	color: inherit;
@@ -181,19 +196,32 @@ button.row{
 		width: 100%;
 		justify-content: center;
 	}
-
-	&.delete{
+	&.delete,
+	&.details{
 		flex: none;
 		justify-content: center;
 		width: 35px;
-		background-color: $red-skull;
 		color: $snow-white;
 		font-weight: 700;
-		border: 2px solid darken($red-skull, 10%);
+	}
+	&.delete{
+		background-color: $blue-demon;
+		border: 1px solid darken($blue-demon, 10%);
 		&:hover{
 			background-color: $black-panther;
 			border-color: $black-panther;
 		}
+	}
+	&.details{
+		width: 12px;
+		text-decoration: none;
+		color: $black-panther;
+		border: 1px solid $black-panther;
+		&:hover{
+			background-color: $black-panther;
+			color: $snow-white;
+		}
+		
 	}
 }
 
@@ -251,7 +279,7 @@ button.row{
 		font-weight: 700;
 		font-size: 1rem;
 	}
-	&.active, &.inactive{
+	&.active, &.inactive, &.neutral{
 		justify-content: center;
 		border-radius: $border-radius;
 		padding: 10px;
@@ -261,13 +289,17 @@ button.row{
 		color: $snow-white;
 	}
 	&.active{
-		border: 2px solid darken($violet-marv, 10%);
-		background-color: $violet-marv;
+		border: 2px solid darken($green-lantern, 10%);
+		background-color: $green-lantern;
 	}
 	&.inactive{
 		border:2px solid darken($orange-mocca-frapuccino, 10%);
 		background-color: $orange-mocca-frapuccino;
 		opacity: .25;
+	}
+	&.neutral{
+		border: 2px solid darken($violet-marv, 10%);
+		background-color: $violet-marv;
 	}
 }
 
@@ -353,13 +385,13 @@ button.row{
 	}
 }
 
-.option-container{
-	& + .option-container{
+.create-question-container{
+	& + .create-question-container{
 		margin-left: 15px;
 	}
 	textarea{
 		width: 100%;
-		min-height: 50px;
+		min-height: 150px;
 	}
 }
 
@@ -389,10 +421,126 @@ button.row{
 }
 
 span.text{
-	color: $violet-marv;
+	color: $red-skull;
 	font-weight: 700;
 	&.chosen{
-		color: $orange-mocca-frapuccino;
+		color: $green-lantern;
 	}
 }
 
+.go-back{
+	display: block;
+	margin: 25px 0 0 auto;
+	width: 30px;
+	height: 30px;
+	color: transparent;
+	overflow: hidden;
+	border: 1px solid $black-panther;
+	position: relative;
+	border-radius: $border-radius;
+	&:before{
+		position: absolute;
+		content: "";
+		display: block;
+		border-top: 1px solid $black-panther;
+		border-left: 1px solid $black-panther;
+		width: 10px;
+		height: 10px;
+		top: 10px;
+		left: 12px;
+		transform: rotate(-45deg);
+	}
+	&:hover{
+		background-color: $black-panther;
+		&:before{
+			border-top-color: $snow-white;
+			border-left-color: $snow-white;
+		}
+	}
+}
+
+
+.option{
+	position: relative;
+	flex: 1;
+	&-container{
+		display: flex;
+		flex-wrap: wrap;
+		>*{
+			margin: 5px;
+		}
+		& + .option-container{
+			margin-top: 15px;
+		}
+	}
+	border:{
+		width: 2px;
+		style: solid;
+	}
+	padding: 5px;
+	border-radius: $border-radius;
+	text-align: center;
+	&.active{
+		border-color: $green-lantern;
+		color: darken($green-lantern, 10%);
+	}
+	&.inactive{
+		border-color: $red-skull;
+		color: darken($red-skull, 10%);
+	}
+	&.neutral{
+		border: 2px solid $black-panther;
+		color: darken($black-panther, 10%);
+		&:hover{
+			background-color: $black-panther;
+			color: $snow-white;
+		}
+	}
+	&:not(button){
+		border: 2px solid $black-panther;
+		color: darken($black-panther, 10%);
+	}
+	&.message{
+		width: 100%;
+		flex: none;
+		border-radius: 0;
+		border: none;
+		padding:{
+			top: 25px;
+			bottom: 25px;
+		}
+		font-size: 1.5rem;
+		color: $black-panther;
+		background-color: transparent;
+		color: $red-skull;
+	}
+	&-name{
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+	&-text{
+
+	}
+	&-check{
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		right: 5px;
+		top: 5px;
+		overflow: hidden;
+		background-color: $green-lantern;
+		border-radius: 50%;
+		&:before{
+			display: block;
+			content: "";
+			width: 10px;
+			height: 5px;
+			transform: rotate(-45deg);
+			border-left: 2px solid $snow-white;
+			border-bottom: 2px solid $snow-white;
+			top: 5px;
+			position: absolute;
+			left: 4px;
+		}
+	}
+}

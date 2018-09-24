@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 
-import OptionButton from './OptionButton'
 import {handleAddUserAnswer} from '../actions/users'
 import {handleAddQuestionVote} from '../actions/questions'
+import {NavLink} from 'react-router-dom'
 
 class UnasweredQuestions extends Component{
 
@@ -25,8 +25,9 @@ class UnasweredQuestions extends Component{
 		}
 		return (
 			<Fragment>
-				<OptionButton action={() => this.saveQuestion(answerInfo1)} label={one}/>
-				<OptionButton action={() => this.saveQuestion(answerInfo2)} label={two}/>
+				<button className="option neutral" onClick={() => this.saveQuestion(answerInfo1)}>{one}</button>
+				<button className="option neutral" onClick={() => this.saveQuestion(answerInfo2)}>{two}</button>
+				<NavLink to={`/question/${qid}`} className="row details" title="view question details">...<span className="inner-text">View question details</span></NavLink>
 			</Fragment>
 		)
 	}
@@ -49,21 +50,21 @@ class UnasweredQuestions extends Component{
 		const user = users[authedUser]
 		const answers_arr = Object.keys(user.answers)
 		const all_questions = Object.keys(questions)
-		const questions_arr = this.filterAnswers(answers_arr, all_questions)
+		const questions_arr = this.filterAnswers(answers_arr, all_questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
 
 		return(
 			<div className="container-inner">
-				<h2 className="container-header">Questions not yet answered</h2>
+				<h2 className="container-header">Would you rather...?</h2>
 				<ul>
 
 				{
 					questions_arr.length === 0
 						? <div className="">There are no more questions</div>
 						: questions_arr
-								.map((question) => {
+								.map(question => {
 									const q = questions[question]
 									return(
-										<li className="wrap-row" key={question}>
+										<li className="option-container" key={question}>
 											{this.questionOptionsButtons(q, authedUser, question)}
 										</li>
 									)

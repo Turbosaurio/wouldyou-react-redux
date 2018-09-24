@@ -1,4 +1,4 @@
-import {_saveQuestionAnswer, _saveQuestion} from '../utils/_DATA'
+import {_saveQuestionAnswer} from '../utils/_DATA'
 
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ADD_USER_ANSWER = 'ADD_USER_ANSWER'

@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {formatDate} from '../utils/_DATA'
+
 
 import {handleRemoveUserAnswer} from '../actions/users'
 import {handleRemoveQuestionVote} from '../actions/questions'
+import {NavLink} from 'react-router-dom'
 
 class AnsweredQuestions extends Component{
 
@@ -25,14 +26,21 @@ class AnsweredQuestions extends Component{
 				{
 					opt === 'optionOne'
 						? <Fragment>
-							<div className="row active">{optionOne.text}</div>
-							<div className="row inactive">{optionTwo.text}</div>
+							<div className="option active">
+								{optionOne.text}
+								<div className="option-check"><span className="inner-text">User has this option selected</span></div>
+							</div>
+							<div className="option inactive">{optionTwo.text}</div>
 						</Fragment>
 						: <Fragment>
-							<div className="row inactive">{optionOne.text}</div>
-							<div className="row active">{optionTwo.text}</div>
+							<div className="option inactive">{optionOne.text}</div>
+							<div className="option active">
+								{optionTwo.text}
+								<div className="option-check"><span className="inner-text">User has this option selected</span></div>
+							</div>
 						</Fragment>
 				}	
+				<NavLink to={`/question/${qid}`} className="row details" title="view question details">...<span className="inner-text">View question details</span></NavLink>
 				<button onClick={() => {this.removeQuestion(info)}} className="row delete" title="Delete this question">X</button>
 			</Fragment>
 		)
@@ -46,15 +54,15 @@ class AnsweredQuestions extends Component{
 		} = this.props
 
 		const user = users[authedUser]
-		const answers_arr = Object.keys(user.answers)
+		const answers_arr = Object.keys(user.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
 		return(
 			<div className="container-inner">
-				<h2 className="container-header">Questions Already Answered</h2>
+				<h2 className="container-header">User's answers</h2>
 				<ul>
 				{
 					answers_arr.length === 0
 					? <div className="">The user has no answered any question</div>
-					: answers_arr.map((answer)=>{
+					: answers_arr.map(answer =>{
 						const q =questions[answer]
 						return(
 							<Fragment key={answer}>
@@ -71,6 +79,10 @@ class AnsweredQuestions extends Component{
 	}
 }
 const mapStateToProps = ({authedUser, users, questions}) =>{
-	return{authedUser, users, questions}
+	return{
+		authedUser,
+		users,
+		questions
+	}
 }
 export default connect(mapStateToProps)(AnsweredQuestions)

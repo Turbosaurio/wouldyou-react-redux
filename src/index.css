@@ -5,8 +5,16 @@ body {
   background-image: url("/images/background.jpg");
   background-size: 300px; }
 
+a,
 button {
   transition: all .25s; }
+
+.inner-text {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  color: transparent; }
 
 .app-title {
   margin-top: 0;
@@ -23,18 +31,20 @@ button {
   position: relative;
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 0 300px;
   color: #323232;
-  border-left: 3px solid #323232;
+  border-left: 20px solid #323232;
   border-right: 3px solid #323232;
   border-bottom: 3px solid #323232;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border-radius: 0 0 10px 10px; }
   .container.main {
     border-top: 10px solid #323232; }
   .container-inner {
     position: relative;
     padding: 25px;
-    background-color: whitesmoke; }
+    background-color: whitesmoke;
+    border-radius: 0 0 10px 0; }
   .container-topbar {
     display: flex;
     justify-content: flex-start;
@@ -86,9 +96,9 @@ button {
 .dashboard-nav {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  bottom: 80px;
-  left: 0;
+  position: absolute;
+  top: 0;
+  right: calc(100% + 20px);
   width: 250px; }
   .dashboard-nav a + a {
     margin-top: 5px; }
@@ -98,8 +108,8 @@ button {
     padding: 15px;
     color: #323232;
     border: 2px solid #323232;
-    border-left: none;
-    border-radius: 0 10px 10px 0;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
     background-color: whitesmoke;
     transition: .25s; }
     .dashboard-nav > a[aria-current="page"] {
@@ -121,32 +131,53 @@ button {
   font-size: 3rem;
   z-index: 10000; }
 
+a.row,
 button.row {
   background-color: transparent;
   color: inherit;
   border: 1px solid #323232;
   padding: 10px;
   border-radius: 10px; }
-  button.row:hover, button.row:active, button.row:focus {
+  a.row:hover, a.row:active, a.row:focus,
+  button.row:hover,
+  button.row:active,
+  button.row:focus {
     background-color: #d7d7d7; }
+  a.row:disabled,
   button.row:disabled {
     background-color: rgba(150, 150, 150, 0.25);
     color: #969696;
     border-color: #969696; }
+  a.row.submit,
   button.row.submit {
     width: 100%;
     justify-content: center; }
-  button.row.delete {
+  a.row.delete, a.row.details,
+  button.row.delete,
+  button.row.details {
     flex: none;
     justify-content: center;
     width: 35px;
-    background-color: #c61f1f;
     color: white;
-    font-weight: 700;
-    border: 2px solid #9a1818; }
+    font-weight: 700; }
+  a.row.delete,
+  button.row.delete {
+    background-color: #58667c;
+    border: 1px solid #434d5e; }
+    a.row.delete:hover,
     button.row.delete:hover {
       background-color: #323232;
       border-color: #323232; }
+  a.row.details,
+  button.row.details {
+    width: 12px;
+    text-decoration: none;
+    color: #323232;
+    border: 1px solid #323232; }
+    a.row.details:hover,
+    button.row.details:hover {
+      background-color: #323232;
+      color: white; }
 
 .submit-container {
   display: flex;
@@ -196,19 +227,22 @@ button.row {
     flex: 1;
     font-weight: 700;
     font-size: 1rem; }
-  .row.active, .row.inactive {
+  .row.active, .row.inactive, .row.neutral {
     justify-content: center;
     border-radius: 10px;
     padding: 10px;
     font-weight: 700;
     color: white; }
   .row.active {
-    border: 2px solid #8b4d8b;
-    background-color: #a863a8; }
+    border: 2px solid #2e582d;
+    background-color: #3f7a3e; }
   .row.inactive {
     border: 2px solid #a2751c;
     background-color: #ce9523;
     opacity: .25; }
+  .row.neutral {
+    border: 2px solid #8b4d8b;
+    background-color: #a863a8; }
 
 .chart {
   position: relative;
@@ -275,12 +309,12 @@ button.row {
     .chart.two:before {
       right: 0; }
 
-.option-container + .option-container {
+.create-question-container + .create-question-container {
   margin-left: 15px; }
 
-.option-container textarea {
+.create-question-container textarea {
   width: 100%;
-  min-height: 50px; }
+  min-height: 150px; }
 
 .question-details {
   flex: none;
@@ -300,7 +334,99 @@ button.row {
   margin-top: 25px; }
 
 span.text {
-  color: #a863a8;
+  color: #c61f1f;
   font-weight: 700; }
   span.text.chosen {
-    color: #ce9523; }
+    color: #3f7a3e; }
+
+.go-back {
+  display: block;
+  margin: 25px 0 0 auto;
+  width: 30px;
+  height: 30px;
+  color: transparent;
+  overflow: hidden;
+  border: 1px solid #323232;
+  position: relative;
+  border-radius: 10px; }
+  .go-back:before {
+    position: absolute;
+    content: "";
+    display: block;
+    border-top: 1px solid #323232;
+    border-left: 1px solid #323232;
+    width: 10px;
+    height: 10px;
+    top: 10px;
+    left: 12px;
+    transform: rotate(-45deg); }
+  .go-back:hover {
+    background-color: #323232; }
+    .go-back:hover:before {
+      border-top-color: white;
+      border-left-color: white; }
+
+.option {
+  position: relative;
+  flex: 1;
+  border-width: 2px;
+  border-style: solid;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center; }
+  .option-container {
+    display: flex;
+    flex-wrap: wrap; }
+    .option-container > * {
+      margin: 5px; }
+    .option-container + .option-container {
+      margin-top: 15px; }
+  .option.active {
+    border-color: #3f7a3e;
+    color: #2e582d; }
+  .option.inactive {
+    border-color: #c61f1f;
+    color: #9a1818; }
+  .option.neutral {
+    border: 2px solid #323232;
+    color: #191919; }
+    .option.neutral:hover {
+      background-color: #323232;
+      color: white; }
+  .option:not(button) {
+    border: 2px solid #323232;
+    color: #191919; }
+  .option.message {
+    width: 100%;
+    flex: none;
+    border-radius: 0;
+    border: none;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 1.5rem;
+    color: #323232;
+    background-color: transparent;
+    color: #c61f1f; }
+  .option-name {
+    text-transform: uppercase;
+    font-weight: 700; }
+  .option-check {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    overflow: hidden;
+    background-color: #3f7a3e;
+    border-radius: 50%; }
+    .option-check:before {
+      display: block;
+      content: "";
+      width: 10px;
+      height: 5px;
+      transform: rotate(-45deg);
+      border-left: 2px solid white;
+      border-bottom: 2px solid white;
+      top: 5px;
+      position: absolute;
+      left: 4px; }
