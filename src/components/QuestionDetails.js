@@ -1,18 +1,25 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {formatDate, makePlural} from '../utils/_DATA'
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
+import ErrorPage from './ErrorPage'
 
 class QuestionDetails extends Component{
 	render(){
+		if(this.props.id === null){
+			return (<ErrorPage/>)
+		}
+
+
 		const {authedUser, id, questions, users} = this.props
 		const
-		q = questions[id],
-		u = users[q.author],
-		currentUser = users[authedUser],
-		oneVotes = q.optionOne.votes.length,
-		twoVotes = q.optionTwo.votes.length,
-		totalVotes = oneVotes + twoVotes
+			q = questions[id],
+			u = users[q.author],
+			currentUser = users[authedUser],
+			oneVotes = q.optionOne.votes.length,
+			twoVotes = q.optionTwo.votes.length,
+			totalVotes = oneVotes + twoVotes
+		
 
 
 		return(
@@ -66,12 +73,10 @@ class QuestionDetails extends Component{
 									</div>
 								</Fragment>
 						}
+						<NavLink to="/" className="go-back" title="Go back">Go back</NavLink>
 					</div>
-				
-				
-				<NavLink to="/" className="go-back" title="Go back">Go back</NavLink>
 			</div>
-		)
+		)			
 	}
 }
 
@@ -79,12 +84,12 @@ function mapStateToProps({authedUser, questions, users}, props){
 	const {id} = props.match.params
 	return {
 		authedUser,
-		id,
 		questions,
 		users,
+		id: questions[id].author ? questions[id] :  null,
 	}
 }
 
 
 
-export default connect(mapStateToProps)(QuestionDetails)
+export default withRouter(connect(mapStateToProps)(QuestionDetails))
