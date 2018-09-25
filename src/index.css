@@ -89,9 +89,17 @@ button {
     color: #323232;
     font-size: 1.5rem;
     border-bottom: 2px solid #323232; }
-  .container ul, .container ol {
-    padding: 0;
-    list-style: none; }
+
+ol.leader-board > li {
+  color: #969696; }
+  ol.leader-board > li + li {
+    margin-top: 5px; }
+  ol.leader-board > li:nth-of-type(1) {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #ce9523;
+    border-bottom: 2px solid #ce9523;
+    padding-bottom: 5px; }
 
 .dashboard-nav {
   display: flex;

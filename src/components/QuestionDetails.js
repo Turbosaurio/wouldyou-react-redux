@@ -10,7 +10,6 @@ class QuestionDetails extends Component{
 			return (<ErrorPage/>)
 		}
 
-
 		const {authedUser, id, questions, users} = this.props
 		const
 			q = questions[id],
@@ -20,8 +19,6 @@ class QuestionDetails extends Component{
 			twoVotes = q.optionTwo.votes.length,
 			totalVotes = oneVotes + twoVotes
 		
-
-
 		return(
 			<div className="container-inner questions-details">
 				<h2>Would Tou Rather?</h2>
@@ -86,7 +83,7 @@ function mapStateToProps({authedUser, questions, users}, props){
 		authedUser,
 		questions,
 		users,
-		id: questions[id].author ? questions[id] :  null,
+		id: questions[id] ? id :  null,
 	}
 }
 

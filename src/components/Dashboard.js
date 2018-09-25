@@ -18,8 +18,8 @@ function Dashboard(props){
 			<Container>
 				<DashboardNav />
 				<Switch>
-					<Route path="/" exact component={AnsweredQuestions} />
-					<Route path="/unanswered-questions"component={UnansweredQuestions} />
+					<Route path="/" exact component={UnansweredQuestions} />
+					<Route path="/answered-questions"component={AnsweredQuestions} />
 					<Route path="/user-details" component={UserDetails} />
 					<Route path="/add" component={CreateQuestion} />
 					<Route path="/question/:id" component={QuestionDetails} />
