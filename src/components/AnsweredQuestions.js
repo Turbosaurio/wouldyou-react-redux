@@ -54,7 +54,7 @@ class AnsweredQuestions extends Component{
 		} = this.props
 
 		const user = users[authedUser]
-		const answers_arr = Object.keys(user.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+		const answers_arr = Object.keys(user.answers)
 		return(
 			<div className="container-inner">
 				<h2 className="container-header">User's answers</h2>
@@ -62,16 +62,18 @@ class AnsweredQuestions extends Component{
 				{
 					answers_arr.length === 0
 					? <div className="">The user has no answered any question</div>
-					: answers_arr.map(answer =>{
-						const q =questions[answer]
-						return(
-							<Fragment key={answer}>
-								<li className="wrap-row">
-									{this.questionOptionsAnswered(q, user.answers[answer], answer)}
-								</li>
-							</Fragment>
-						)
-					})
+					: answers_arr
+						.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+						.map(answer =>{
+							const q =questions[answer]
+							return(
+								<Fragment key={answer}>
+									<li className="wrap-row">
+										{this.questionOptionsAnswered(q, user.answers[answer], answer)}
+									</li>
+								</Fragment>
+							)
+						})
 				}
 				</ul>
 			</div>

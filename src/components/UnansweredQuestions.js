@@ -59,7 +59,7 @@ class UnasweredQuestions extends Component{
 
 				{
 					questions_arr.length === 0
-						? <div className="">There are no more questions</div>
+						? <div className="">All available questions have been answered.</div>
 						: questions_arr
 								.map(question => {
 									const q = questions[question]

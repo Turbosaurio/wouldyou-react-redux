@@ -9,14 +9,8 @@ class UserDetails extends Component{
 		const user = users[userId]
 		const answers_arr = Object.keys(user.answers).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
 
-		const users_arr = Object.keys(users).sort((a, b) => {
-			const answerA = Object.keys(users[a].answers).length
-			const answerB = Object.keys(users[b].answers).length
-			return answerB - answerA
-		})
-
 		return(
-			<div class="container-inner details">
+			<div className="container-inner details">
 				<div className="row with-image">
 					<img src={user.avatarURL} alt={`${user.name}'s avatar`} />
 					<div className="name">{`${user.name} has submitted ${user.questions.length} ${makePlural(user.questions.length, 'question')} and answered ${Object.keys(user.answers).length} questions`}</div>

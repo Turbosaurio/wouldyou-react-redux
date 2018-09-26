@@ -11,11 +11,11 @@ class Leaderboard extends Component {
 		const users_arr = Object.keys(users).sort((a, b) => {
 			const answerA = Object.keys(users[a].answers).length
 			const answerB = Object.keys(users[b].answers).length
-			return answerB - answerA
+			return answerA - answerB
 		})
 
 		return(
-			<Fragment>{users_arr.map( id => <UserDetails userId={id} />)}</Fragment>
+			<Fragment>{users_arr.map( id => <UserDetails key={id} userId={id} />)}</Fragment>
 		)
 	}
 }

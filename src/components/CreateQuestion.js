@@ -53,11 +53,11 @@ class CreateQuestion extends Component{
 				<div className="wrap-row">
 					<div className="create-question-container">
 						<h3>Option One</h3>
-						<textarea onChange={this.handleChangeOne} placeholder="write optione one" className="">{this.state.optionOne}</textarea>
+						<textarea onChange={this.handleChangeOne} placeholder="write optione one" className="" value={this.state.optionOne} />
 					</div>
 					<div className="create-question-container">
 						<h3>Option Two</h3>
-						<textarea onChange={this.handleChangeTwo} placeholder="write optione two" className="">{this.state.optionTwo}</textarea>
+						<textarea onChange={this.handleChangeTwo} placeholder="write optione two" className="" value={this.state.optionTwo} />
 					</div>
 				</div>
 				<div className="submit-container">
