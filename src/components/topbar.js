@@ -12,7 +12,7 @@ function Topbar (props){
 				authedUser !== "none"
 					? <Fragment>
 							<img src={avatarURL} alt={`${authedUser}'s avatar`} />
-							<div className="topbar-user">{users[authedUser].name}</div>
+							<div className="topbar-user">{`Logged in as ${users[authedUser].name}`}</div>
 							<LogoutButton />
 						</Fragment>
 					: null

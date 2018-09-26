@@ -37,6 +37,8 @@ $violet-marv : rgb(168,99,168);
 
 $border-radius : 10px;
 
+$color-list: $red-skull, $green-lantern, $blue-demon;
+
 .app-title{
 	margin:{
 		top: 0;
@@ -56,7 +58,7 @@ $border-radius : 10px;
 .container{
 	position: relative;
 	width: 100%;
-	max-width: 800px;
+	max-width: 1024px;
 	margin: 0 auto 0 300px;
 	color: $black-panther;
 	border-left: 20px solid $black-panther;
@@ -72,7 +74,9 @@ $border-radius : 10px;
 		position: relative;
 		padding: 25px;
 		background-color: $almost-white;
-		border-radius: 0 0 $border-radius 0;
+		&:last-of-type{
+			border-radius: 0 0 $border-radius 0;
+		}
 	}
 	&-topbar{
 		display: flex;
@@ -152,6 +156,7 @@ ol.leader-board{
 	top: 0;
 	right: calc(100% + 20px);
 	width: 250px;
+	text-align: right;
 	a + a{
 		margin-top: 5px;
 	}
@@ -265,7 +270,7 @@ button.row{
 	display: flex;
 	align-items: center;
 	&.with-image{
-		$color-list: $red-skull, $green-lantern, $blue-demon;
+		
 		border-width: 3px;
 		@for $i from 1 through length($color-list){
 			&:nth-child(#{$i}){
@@ -434,7 +439,7 @@ button.row{
 
 span.text{
 	color: $red-skull;
-	font-weight: 700;
+	// font-weight: 700;
 	&.chosen{
 		color: $green-lantern;
 	}
@@ -553,6 +558,22 @@ span.text{
 			top: 5px;
 			position: absolute;
 			left: 4px;
+		}
+	}
+}
+
+
+.details-row{
+	display: flex;
+	margin-top: 10px;
+	.detail-item{
+		flex: 1;
+		&:not(:first-of-type){
+			margin-left: 10px;
+		}
+		>summary{
+			padding-bottom: 5px;
+			border-bottom: 1px solid $black-panther;
 		}
 	}
 }

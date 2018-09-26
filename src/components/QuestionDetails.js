@@ -5,6 +5,7 @@ import {NavLink, withRouter} from 'react-router-dom'
 import ErrorPage from './ErrorPage'
 
 class QuestionDetails extends Component{
+
 	render(){
 		if(this.props.id === null){
 			return (<ErrorPage/>)
@@ -53,9 +54,8 @@ class QuestionDetails extends Component{
 											</Fragment>
 											: null
 										}
-										<div className="text">{`With: ${twoVotes} ${makePlural(twoVotes, "vote")} and ${Math.round(twoVotes * 100 / totalVotes * 10) / 10}% of the total votes`}</div>
+										<div className="text">{`With: ${oneVotes} ${makePlural(oneVotes, "vote")} and ${Math.round(oneVotes * 100 / totalVotes * 10) / 10}% of the total votes`}</div>
 									</div>
-
 									<div className={`option ${currentUser.answers[id] === 'optionTwo' ? 'active' :  'inactive'}`}>
 										<div className="option-name">{q.optionTwo.text}</div>
 										{
@@ -66,8 +66,9 @@ class QuestionDetails extends Component{
 											</Fragment>
 											: null
 										}
-										<div className="text">{`With: ${oneVotes} ${makePlural(oneVotes, "vote")} and ${Math.round(oneVotes * 100 / totalVotes * 10) / 10}% of the total votes`}</div>
+										<div className="text">{`With: ${twoVotes} ${makePlural(twoVotes, "vote")} and ${Math.round(twoVotes * 100 / totalVotes * 10) / 10}% of the total votes`}</div>
 									</div>
+
 								</Fragment>
 						}
 						<NavLink to="/" className="go-back" title="Go back">Go back</NavLink>

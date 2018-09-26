@@ -30,7 +30,7 @@ button {
 .container {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 1024px;
   margin: 0 auto 0 300px;
   color: #323232;
   border-left: 20px solid #323232;
@@ -43,8 +43,9 @@ button {
   .container-inner {
     position: relative;
     padding: 25px;
-    background-color: whitesmoke;
-    border-radius: 0 0 10px 0; }
+    background-color: whitesmoke; }
+    .container-inner:last-of-type {
+      border-radius: 0 0 10px 0; }
   .container-topbar {
     display: flex;
     justify-content: flex-start;
@@ -107,7 +108,8 @@ ol.leader-board > li {
   position: absolute;
   top: 0;
   right: calc(100% + 20px);
-  width: 250px; }
+  width: 250px;
+  text-align: right; }
   .dashboard-nav a + a {
     margin-top: 5px; }
   .dashboard-nav > a {
@@ -342,8 +344,7 @@ button.row {
   margin-top: 25px; }
 
 span.text {
-  color: #c61f1f;
-  font-weight: 700; }
+  color: #c61f1f; }
   span.text.chosen {
     color: #3f7a3e; }
 
@@ -438,3 +439,14 @@ span.text {
       top: 5px;
       position: absolute;
       left: 4px; }
+
+.details-row {
+  display: flex;
+  margin-top: 10px; }
+  .details-row .detail-item {
+    flex: 1; }
+    .details-row .detail-item:not(:first-of-type) {
+      margin-left: 10px; }
+    .details-row .detail-item > summary {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #323232; }

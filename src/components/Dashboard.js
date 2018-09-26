@@ -8,7 +8,7 @@ import DashboardNav from './DashboardNav'
 import AnsweredQuestions from './AnsweredQuestions'
 import UnansweredQuestions from './UnansweredQuestions'
 import CreateQuestion from './CreateQuestion'
-import UserDetails from './UserDetails'
+import Leaderboard from './Leaderboard'
 import QuestionDetails from './QuestionDetails'
 import ErrorPage from './ErrorPage'
 
@@ -20,7 +20,7 @@ function Dashboard(props){
 				<Switch>
 					<Route path="/" exact component={UnansweredQuestions} />
 					<Route path="/answered-questions"component={AnsweredQuestions} />
-					<Route path="/user-details" component={UserDetails} />
+					<Route path="/leaderboard" component={Leaderboard} />
 					<Route path="/add" component={CreateQuestion} />
 					<Route path="/question/:id" component={QuestionDetails} />
 					<Route component={ErrorPage} />
