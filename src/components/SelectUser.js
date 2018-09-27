@@ -24,7 +24,7 @@ function SelectUser (props){
 							return(
 								<button key={i} className="row with-image" onClick={() => {handleSetAuthedUser(u.id)}}>
 									<img src={u.avatarURL} alt={`${u.name}'s avatar`} />
-									<div className="name">{u.name}</div>
+									<p className="name">{u.name}</p>
 								</button>
 							)
 						})

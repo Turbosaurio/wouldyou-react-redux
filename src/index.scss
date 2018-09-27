@@ -32,8 +32,8 @@ $green-lantern : rgb(63,122,62);
 $blue-demon : rgb(88,102,124);
 $almost-white:  rgb(245,245,245);
 $jean-grey : rgb(150,150,150);
-$orange-mocca-frapuccino :  rgb(206,149,35);
-$violet-marv : rgb(168,99,168);
+$orange-mocca-frapuccino :  $black-panther;
+$violet-marv : $blue-demon;
 
 $border-radius : 10px;
 
@@ -147,6 +147,11 @@ ol.leader-board{
 			padding-bottom: 5px;
 		}
 	}
+}
+
+ul.chart-list{
+	padding: 0;
+	list-style: none;
 }
 
 .dashboard-nav{

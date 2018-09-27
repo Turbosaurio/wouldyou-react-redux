@@ -12,7 +12,6 @@ class CreateQuestion extends Component{
 	}
 
 	handleChangeOne = (e) => {
-		e.preventDefault()
 		const text = e.target.value
 		this.setState({optionOne: text})
 	}

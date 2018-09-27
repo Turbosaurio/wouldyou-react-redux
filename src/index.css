@@ -98,9 +98,13 @@ ol.leader-board > li {
   ol.leader-board > li:nth-of-type(1) {
     font-weight: 700;
     font-size: 1.25rem;
-    color: #ce9523;
-    border-bottom: 2px solid #ce9523;
+    color: #323232;
+    border-bottom: 2px solid #323232;
     padding-bottom: 5px; }
+
+ul.chart-list {
+  padding: 0;
+  list-style: none; }
 
 .dashboard-nav {
   display: flex;
@@ -247,12 +251,12 @@ button.row {
     border: 2px solid #2e582d;
     background-color: #3f7a3e; }
   .row.inactive {
-    border: 2px solid #a2751c;
-    background-color: #ce9523;
+    border: 2px solid #191919;
+    background-color: #323232;
     opacity: .25; }
   .row.neutral {
-    border: 2px solid #8b4d8b;
-    background-color: #a863a8; }
+    border: 2px solid #434d5e;
+    background-color: #58667c; }
 
 .chart {
   position: relative;
@@ -298,24 +302,24 @@ button.row {
         margin-left: 5px;
         padding-left: 5px;
         text-align: left;
-        border-bottom: 2px solid #ce9523;
-        border-left: 2px solid #ce9523;
-        color: #ce9523; }
+        border-bottom: 2px solid #323232;
+        border-left: 2px solid #323232;
+        color: #323232; }
       .chart-description .label.two {
         margin-right: 5px;
         padding-right: 5px;
         text-align: right;
-        border-bottom: 2px solid #a863a8;
-        border-right: 2px solid #a863a8;
-        color: #a863a8; }
+        border-bottom: 2px solid #58667c;
+        border-right: 2px solid #58667c;
+        color: #58667c; }
   .chart.one {
-    background-color: #ce9523;
-    color: #ce9523; }
+    background-color: #323232;
+    color: #323232; }
     .chart.one:before {
       left: 0; }
   .chart.two {
-    background-color: #a863a8;
-    color: #a863a8; }
+    background-color: #58667c;
+    color: #58667c; }
     .chart.two:before {
       right: 0; }
 
