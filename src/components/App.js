@@ -16,13 +16,12 @@ class App extends Component {
 	}
 	render() {
 		const {loading, authedUser} = this.props
-		const pleaseWait = <div className="system-message">Wait a moment</div>
 		return (
 			<div>
 				<LoadingBar />
 				{
 					loading === true
-					? pleaseWait
+					? <div className="system-message">Wait a moment</div>
 					: <div>
 							{
 								authedUser === 'none'

@@ -5,68 +5,76 @@ import { handleAddNewQuestion } from '../actions/questions'
 
 
 class CreateQuestion extends Component{
-	state = {
-		optionOne: '',
-		optionTwo: '',
-		toHome: false
+	constructor(){
+		super()
+		this.defaultState = {
+			optionOne: '',
+			optionTwo: '',
+			toHome: false
+		}
+		this.state = this.defaultState
 	}
 
-	handleChangeOne = (e) => {
-		const text = e.target.value
-		this.setState({optionOne: text})
+	handleChange = e => {
+		const { name, value} = e.target
+		this.setState({
+			[name]: value
+		})
 	}
 
-	handleChangeTwo = (e) => {
-		e.preventDefault()
-		const text = e.target.value
-		this.setState({optionTwo: text})
+	validate = () =>{
+		const {optionOne, optionTwo} = this.state
+		return optionOne.trim() !== '' && optionTwo.trim() !== ''
 	}
 
 	submitQuestion(e){
 		e.preventDefault()
-		const {optionOne, optionTwo} = this.state
-		const {dispatch, authedUser} = this.props
-		const newQuestion = {
-			optionOneText: optionOne,
-			optionTwoText: optionTwo,
-			author: authedUser
-		}
-		dispatch(handleAddNewQuestion(newQuestion))
+		const {
+			optionOne: optionOneText, 
+			optionTwo: optionTwoText,
+		} = this.state
+		const {dispatch, authedUser: author} = this.props
+
+		dispatch( handleAddNewQuestion( {optionOneText, optionTwoText, author} ) )
+
 		this.setState(() =>{
 			return{
-				...this.state,
-				optionOne: '',
-				optionTwo: '',
+				...this.defaultState,
 				toHome: true
 			}
 		})
 	}
 
 	render(){
-		 if( this.state.toHome === true){
-		 	return <Redirect to="/" />
-		 }
 		return(
-			<div className="container-inner">
-				<h2 className="container-header">Create a question</h2>
-				<div className="wrap-row">
-					<div className="create-question-container">
-						<h3>Option One</h3>
-						<textarea onChange={this.handleChangeOne} placeholder="write optione one" className="" value={this.state.optionOne} />
+			 this.state.toHome
+			 	? <Redirect to="/" />
+				:  <div className="container-inner">
+						<h2 className="container-header">Create a question</h2>
+						<div className="wrap-row">
+							<div className="create-question-container">
+								<h3>Option One</h3>
+								<textarea name="optionOne" onChange={this.handleChange} placeholder="write optione one" className="" value={this.state.optionOne} />
+							</div>
+							<div className="create-question-container">
+								<h3>Option Two</h3>
+								<textarea name="optionTwo" onChange={this.handleChange} placeholder="write optione two" className="" value={this.state.optionTwo} />
+							</div>
+						</div>
+						<div className="submit-container">
+						{this.validate()
+							? 
+								<button
+									type="submit"
+									className="row submit"
+									onClick={e => this.submitQuestion(e)}
+								>Submit new question</button>
+							: <div>Please fill both fieds</div>
+						}
+						</div>
 					</div>
-					<div className="create-question-container">
-						<h3>Option Two</h3>
-						<textarea onChange={this.handleChangeTwo} placeholder="write optione two" className="" value={this.state.optionTwo} />
-					</div>
-				</div>
-				<div className="submit-container">
-					{this.state.optionOne !== '' && this.state.optionTwo
-						? <button type="submit" className="row submit" onClick={(e) => this.submitQuestion(e, )}>Submit new question</button>
-						: <button  type="submit" className="row submit" disabled>Please type your options in both fields</button>
-					}
-				</div>
-			</div>
 		)
+	
 	}
 }
 const mapStateToProps = ({authedUser}) =>{

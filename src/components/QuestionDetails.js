@@ -18,7 +18,7 @@ function QuestionDetails (props){
 		totalVotes = oneVotes + twoVotes
 	
 	return(
-		<div className="questions-details">
+		<div className="container-inner questions-details">
 			<h2>Would Tou Rather?</h2>
 			<h3>Question creator</h3>
 			<div className="row with-image">

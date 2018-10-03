@@ -1,13 +1,28 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-function DashboardNav (props){
+const links = [
+	['/', 'Missing Questions'],
+	['/answered-questions', 'User Answers'],
+	['/leaderboard', 'Leaderboard'],
+	['/add', 'Create a Question'],
+]
+
+
+
+function DashboardNav (){
 	return(
 		<nav className="dashboard-nav" aria-label="Dashboard Navigation">
-			<NavLink to="/" exact>Missing Questions</NavLink>
-			<NavLink to="/answered-questions" exact>User's Answers</NavLink>
-			<NavLink to="/leaderboard">Leaderboard</NavLink>
-			<NavLink to="/add">Create a Question</NavLink>
+		{
+			links.map( (link, i) => 
+				<NavLink
+					key={link[0]}
+					to={link[0]}
+					exact={ i === 0 ? true : false}>
+					{link[1]}
+				</NavLink>
+			)
+		}
 		</nav>
 	)
 }
